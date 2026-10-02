@@ -1,4 +1,12 @@
+import sys
+from pathlib import Path
+
 import torch
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+sys.path.insert(0, str(PROJECT_ROOT / "src" / "models"))
+
 from information_preservation import InformationPreservationModule
 
 

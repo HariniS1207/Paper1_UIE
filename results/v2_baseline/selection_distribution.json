@@ -1,0 +1,14 @@
+{
+  "conservative": {
+    "count": 22,
+    "fraction": 0.05945945945945946
+  },
+  "balanced": {
+    "count": 332,
+    "fraction": 0.8972972972972973
+  },
+  "aggressive": {
+    "count": 16,
+    "fraction": 0.043243243243243246
+  }
+}

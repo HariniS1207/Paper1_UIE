@@ -69,7 +69,8 @@ checkpoint = torch.load(
 )
 
 model.load_state_dict(
-    checkpoint["model_state_dict"]
+    checkpoint["model_state_dict"],
+    strict=True,
 )
 
 model.eval()

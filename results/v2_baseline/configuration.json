@@ -1,0 +1,15 @@
+{
+  "checkpoint": "C:\\Users\\Harini\\Paper1_UIE\\checkpoints\\v2\\paper1_v2_epoch_006.pth",
+  "split": "val",
+  "dataset_root": "C:\\Users\\Harini\\Paper1_UIE\\data\\EUVP\\EUVP-Dataset\\EUVP\\Paired\\underwater_imagenet",
+  "batch_size": 8,
+  "device": "cuda",
+  "seed": 42,
+  "image_range": "[0,1]",
+  "metric_implementation": {
+    "psnr": "skimage.metrics.peak_signal_noise_ratio(data_range=1.0)",
+    "ssim": "skimage.metrics.structural_similarity(channel_axis=2, data_range=1.0)",
+    "uiqm": "custom UIQM implementation in src/evaluate_test.py",
+    "uciqe": "custom UCIQE implementation in src/evaluate_test.py"
+  }
+}

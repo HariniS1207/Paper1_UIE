@@ -1,0 +1,55 @@
+{
+  "input": "C:\\Users\\Harini\\Paper1_UIE\\data\\EUVP\\EUVP-Dataset\\EUVP\\Paired\\underwater_imagenet\\trainA\\n02607072_605.jpg",
+  "reference": "C:\\Users\\Harini\\Paper1_UIE\\data\\EUVP\\EUVP-Dataset\\EUVP\\Paired\\underwater_imagenet\\trainB\\n02607072_605.jpg",
+  "checkpoint": "C:\\Users\\Harini\\Paper1_UIE\\checkpoints\\v2\\paper1_v2_epoch_006.pth",
+  "selected_candidate": "balanced",
+  "selection_weights": {
+    "conservative": 0.19690880179405212,
+    "balanced": 0.4047303795814514,
+    "aggressive": 0.39836081862449646
+  },
+  "utilities": {
+    "conservative": 4.928863525390625,
+    "balanced": 5.649343967437744,
+    "aggressive": 5.633481025695801
+  },
+  "candidate_metrics": {
+    "conservative": {
+      "uiqm": 1.4394800118402027,
+      "uciqe": 7.365323543548584,
+      "psnr": 18.876071652322544,
+      "ssim": 0.7966015934944153,
+      "preservation": 0.9806066155433655,
+      "consequence_error": 0.09883864223957062,
+      "utility": 4.928863525390625
+    },
+    "balanced": {
+      "uiqm": 1.4322525457332942,
+      "uciqe": 7.809159278869629,
+      "psnr": 19.072035039881705,
+      "ssim": 0.7903140187263489,
+      "preservation": 0.9628603458404541,
+      "consequence_error": 0.09883864223957062,
+      "utility": 5.649343967437744
+    },
+    "aggressive": {
+      "uiqm": 1.5685323238172935,
+      "uciqe": 6.535671234130859,
+      "psnr": 18.525175034925088,
+      "ssim": 0.7712860107421875,
+      "preservation": 0.9271553754806519,
+      "consequence_error": 0.09883864223957062,
+      "utility": 5.633481025695801
+    }
+  },
+  "selected_metrics": {
+    "psnr": 19.072035039881705,
+    "ssim": 0.7903140187263489,
+    "uiqm": 1.4322525457332942,
+    "uciqe": 7.809159278869629,
+    "preservation": 0.9628603458404541,
+    "consequence_error": 0.09883864223957062,
+    "utility": 5.649343967437744,
+    "selected": "balanced"
+  }
+}

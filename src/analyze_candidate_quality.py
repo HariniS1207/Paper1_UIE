@@ -46,7 +46,7 @@ checkpoint = torch.load(
     map_location=DEVICE
 )
 
-model.load_state_dict(checkpoint["model_state_dict"])
+model.load_state_dict(checkpoint["model_state_dict"], strict=True)
 model.eval()
 
 

@@ -85,7 +85,8 @@ for checkpoint_path in CHECKPOINTS:
     )
 
     model.load_state_dict(
-        checkpoint["model_state_dict"]
+        checkpoint["model_state_dict"],
+        strict=True,
     )
 
     model.eval()

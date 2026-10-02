@@ -1,0 +1,26 @@
+{
+  "Conservative": {
+    "psnr_improved": 366,
+    "ssim_improved": 351,
+    "psnr_fraction": 0.9891891891891892,
+    "ssim_fraction": 0.9486486486486486
+  },
+  "Balanced": {
+    "psnr_improved": 362,
+    "ssim_improved": 325,
+    "psnr_fraction": 0.9783783783783784,
+    "ssim_fraction": 0.8783783783783784
+  },
+  "Aggressive": {
+    "psnr_improved": 251,
+    "ssim_improved": 97,
+    "psnr_fraction": 0.6783783783783783,
+    "ssim_fraction": 0.26216216216216215
+  },
+  "Selected": {
+    "psnr_improved": 365,
+    "ssim_improved": 320,
+    "psnr_fraction": 0.9864864864864865,
+    "ssim_fraction": 0.8648648648648649
+  }
+}
