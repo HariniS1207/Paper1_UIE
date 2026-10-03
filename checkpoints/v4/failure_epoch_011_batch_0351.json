@@ -1,0 +1,162 @@
+{
+  "epoch": 11,
+  "phase": "train",
+  "batch_index": 351,
+  "filenames": [
+    "n01664065_14698.jpg",
+    "n01914609_9235.jpg",
+    "n01496331_12909.jpg",
+    "n01496331_4365.jpg",
+    "n01914609_10444.jpg",
+    "n02607072_6407.jpg",
+    "n01917289_374.jpg",
+    "n01917289_2371.jpg"
+  ],
+  "amp_enabled": true,
+  "scaler_scale": 32768.0,
+  "model_output_status": {
+    "condition_map": true,
+    "condition_vector": true,
+    "candidates.conservative": true,
+    "candidates.balanced": true,
+    "candidates.aggressive": true,
+    "preservation_scores.conservative": true,
+    "preservation_scores.balanced": true,
+    "preservation_scores.aggressive": true,
+    "utilities": true,
+    "selection_weights": true,
+    "selected_index": true,
+    "selected_image": true,
+    "reconstructed": true,
+    "consequence_error": true,
+    "consequence_score": true
+  },
+  "model_outputs_finite": true,
+  "loss_component_finite": {
+    "total": true,
+    "reconstruction": true,
+    "preservation": true,
+    "consequence": true,
+    "selection": true
+  },
+  "losses": {
+    "total": 0.6643970012664795,
+    "reconstruction": 0.06061461567878723,
+    "preservation": 0.016091935336589813,
+    "consequence": 0.05072958394885063,
+    "selection": 1.1808362007141113
+  },
+  "scaled_gradient_finite": false,
+  "unscaled_gradient_finite": false,
+  "gradient_norm_before_clip": 5.079759403938611,
+  "gradient_norm_after_clip": null,
+  "first_offending_parameter": "candidate_generator.gain_logits.aggressive_increment",
+  "optimizer_step_executed": false,
+  "scaled_gradient_norm": 166453.5561482604,
+  "no_step_amp_fp32_comparison": {
+    "amp": {
+      "amp_enabled": true,
+      "scale": 32768.0,
+      "outputs_finite": true,
+      "losses": {
+        "total": 0.6643970012664795,
+        "reconstruction": 0.06061461567878723,
+        "preservation": 0.016091935336589813,
+        "consequence": 0.05072958394885063,
+        "selection": 1.1808362007141113
+      },
+      "losses_finite": {
+        "total": true,
+        "reconstruction": true,
+        "preservation": true,
+        "consequence": true,
+        "selection": true
+      },
+      "component_gradients": {
+        "total": {
+          "finite": false,
+          "first_nonfinite_parameter": "candidate_generator.gain_logits.aggressive_increment",
+          "scaled_l2_norm": 166453.5561482604,
+          "unscaled_l2_norm": 5.079759403938611
+        },
+        "reconstruction": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 6514.168451841852,
+          "unscaled_l2_norm": 0.19879664464849403
+        },
+        "preservation": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 4527.971738671067,
+          "unscaled_l2_norm": 0.13818273128268638
+        },
+        "consequence": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 18016.158261536708,
+          "unscaled_l2_norm": 0.5498095172588107
+        },
+        "selection": {
+          "finite": false,
+          "first_nonfinite_parameter": "candidate_generator.gain_logits.aggressive_increment",
+          "scaled_l2_norm": 326061.95327588584,
+          "unscaled_l2_norm": 9.950621132686946
+        }
+      },
+      "optimizer_step_executed": false
+    },
+    "fp32": {
+      "amp_enabled": false,
+      "scale": 1.0,
+      "outputs_finite": true,
+      "losses": {
+        "total": 0.6639580130577087,
+        "reconstruction": 0.06061432510614395,
+        "preservation": 0.01599474996328354,
+        "consequence": 0.050717197358608246,
+        "selection": 1.1800025701522827
+      },
+      "losses_finite": {
+        "total": true,
+        "reconstruction": true,
+        "preservation": true,
+        "consequence": true,
+        "selection": true
+      },
+      "component_gradients": {
+        "total": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 5.090621449407624,
+          "unscaled_l2_norm": 5.090621449407624
+        },
+        "reconstruction": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 0.1987782582082996,
+          "unscaled_l2_norm": 0.1987782582082996
+        },
+        "preservation": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 0.13840606568888703,
+          "unscaled_l2_norm": 0.13840606568888703
+        },
+        "consequence": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 0.5467641687447682,
+          "unscaled_l2_norm": 0.5467641687447682
+        },
+        "selection": {
+          "finite": true,
+          "first_nonfinite_parameter": null,
+          "scaled_l2_norm": 9.973168884327512,
+          "unscaled_l2_norm": 9.973168884327512
+        }
+      },
+      "optimizer_step_executed": false
+    }
+  }
+}

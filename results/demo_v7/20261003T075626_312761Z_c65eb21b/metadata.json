@@ -1,0 +1,84 @@
+{
+  "model": "Paper 1 - V7",
+  "checkpoint": "checkpoints\\v7\\paper1_v7_best_epoch_019.pth",
+  "checkpoint_sha256": "A0E04FEEC9A6C69CCEE0DD8A6E23E9C35227CDAA10C270DD82F853536920B49E",
+  "best_epoch": 19,
+  "mode": "inference only",
+  "input_filename": "upload.png",
+  "input_saved": false,
+  "input_original_size": [
+    675,
+    900
+  ],
+  "model_input_size": [
+    256,
+    256
+  ],
+  "preprocessing": "EXIF transpose, RGB conversion, resize to 256x256 with Lanczos, float32 scaling to [0,1]",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "selected_candidate": "Aggressive",
+  "utilities": {
+    "Conservative": -6.888467788696289,
+    "Balanced": -6.167670726776123,
+    "Aggressive": 2.5152649879455566
+  },
+  "selection_weights": {
+    "Conservative": 8.239514863817021e-05,
+    "Balanced": 0.00016941021021921188,
+    "Aggressive": 0.9997482895851135
+  },
+  "preservation_scores": {
+    "Conservative": 0.9993877410888672,
+    "Balanced": 0.9959791898727417,
+    "Aggressive": 0.9382259845733643
+  },
+  "metrics": {
+    "original": {
+      "uiqm": 2.6534102359208083,
+      "uciqe": 6.429227828979492,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null,
+      "preservation": 1.0
+    },
+    "conservative": {
+      "uiqm": 1.3926528222884151,
+      "uciqe": 6.422237873077393,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null,
+      "preservation": 0.9993877410888672
+    },
+    "balanced": {
+      "uiqm": 1.1071825185911863,
+      "uciqe": 6.391030311584473,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null,
+      "preservation": 0.9959791898727417
+    },
+    "aggressive": {
+      "uiqm": 1.601523698287477,
+      "uciqe": 6.081068515777588,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null,
+      "preservation": 0.9382259845733643
+    },
+    "selected": {
+      "uiqm": 1.601523698287477,
+      "uciqe": 6.081068515777588,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null,
+      "preservation": 0.9382259845733643
+    }
+  },
+  "reference_status": "**Reference metrics:** PSNR/SSIM unavailable because no reference image was supplied."
+}

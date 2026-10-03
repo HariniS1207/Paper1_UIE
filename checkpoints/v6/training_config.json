@@ -1,0 +1,77 @@
+{
+  "experiment": "Paper 1 V6 fidelity-eligibility adaptive-selection experiment",
+  "seed": 42,
+  "pytorch_version": "2.13.0+cu130",
+  "cuda_available": true,
+  "cuda_version": "13.0",
+  "gpu_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "batch_size": 8,
+  "optimizer": "Adam",
+  "learning_rate": 0.0001,
+  "max_epochs": 20,
+  "amp_enabled": true,
+  "amp_initial_scale": 2048.0,
+  "amp_scale_adjustment": "Start at GradScaler 2048; diagnose any overflow with same-batch replay and do not count failed optimizer steps.",
+  "scheduler": null,
+  "early_stopping": false,
+  "loss_weights": {
+    "reconstruction": 1.0,
+    "preservation": 0.2,
+    "consequence": 0.2,
+    "selection": 0.5
+  },
+  "training_split": "data/splits/train.txt",
+  "validation_split": "data/splits/val.txt",
+  "test_split_loaded": false,
+  "initialization": "frozen V4 best checkpoint; all V4 modules are then trainable",
+  "v4_sha256_before": "5C877EDD0094E0C3F35AD977B5EA7651FFA7E22FBF4C38C15006AECE19E7C8D7",
+  "target_calibration": {
+    "method": "5% relative fidelity eligibility; eligible candidates ranked by mean train-median/IQR normalized preservation distortion and consequence L1",
+    "fit_split": "data/splits/train.txt",
+    "fit_observations": 8880,
+    "component_order": [
+      "preservation_distortion",
+      "consequence_l1"
+    ],
+    "median": [
+      0.00441405177116394,
+      0.11060812324285507
+    ],
+    "iqr": [
+      0.036563098430633545,
+      0.07987094204872847
+    ],
+    "relative_fidelity_tolerance": 0.05,
+    "threshold_analysis": "diagnostics/v6_selection/v6_training_only_threshold_analysis.json",
+    "old_v4_reference_l1_target_counts": {
+      "conservative": 9,
+      "balanced": 20,
+      "aggressive": 2931
+    },
+    "v6_multiobjective_target_counts": {
+      "conservative": 12,
+      "balanced": 21,
+      "aggressive": 2927
+    },
+    "eligible_candidate_frequency": {
+      "conservative": 23,
+      "balanced": 31,
+      "aggressive": 2938
+    },
+    "training_sample_count": 2960,
+    "test_split_loaded": false,
+    "validation_used_for_fit": false
+  },
+  "preprocessing": "paired ToTensor [0,1]; paired horizontal flip for train only; no other changes",
+  "model": "V4 module graph and candidate-specific generator; only V6 selector target formulation differs",
+  "candidate_generator": "V4 shared 3->32->64->128 features; separate candidate-specific condition projection and independent 160->64->32->3 tanh residual heads; ordered positive gains initialized 0.0625/0.125/0.25",
+  "v2_sha256_before": "BBC8027FF23DCD477CD2E4BD0C95D7A42222AAAAE2E6A6197AF3D198149C53D1",
+  "v3_sha256_before": "80163DBA423CCDE672318A3DD4F93B68982ADE6A0CD3ED737FA8D326948D0555",
+  "output_dir": "C:\\Users\\Harini\\Paper1_UIE\\checkpoints\\v6",
+  "results_dir": "C:\\Users\\Harini\\Paper1_UIE\\results\\v6\\run_20261002T200713Z_02595bf3",
+  "amp_stability_correction": {
+    "resume_scale": 4096.0,
+    "growth_tracker_reset": true,
+    "diagnosis": "Recorded same-batch AMP replay found selector gradients non-finite at 8192/4096, finite at 2048 and below, and FP32 finite; resumed with reduced scale based on these diagnostics."
+  }
+}

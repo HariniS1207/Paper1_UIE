@@ -1,0 +1,982 @@
+[
+  {
+    "epoch": 1,
+    "train": {
+      "total": 0.602540175495921,
+      "reconstruction": 0.08558678947187759,
+      "preservation": 0.027240327453693827,
+      "consequence": 0.0861481445665295,
+      "selection": 0.988551382277463
+    },
+    "validation": {
+      "total": 0.5932015621984327,
+      "reconstruction": 0.08448695339061119,
+      "preservation": 0.027378485180638932,
+      "consequence": 0.08612867199085854,
+      "selection": 0.9720263445699537
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.7912120297551,
+      "Balanced": 852.5541796684265,
+      "Aggressive": 1575.654688410461
+    },
+    "train_target_hard_counts": {
+      "Conservative": 334,
+      "Balanced": 526,
+      "Aggressive": 2100
+    },
+    "train_selected_counts": {
+      "Conservative": 22,
+      "Balanced": 0,
+      "Aggressive": 2938
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 16,
+      "Balanced": 0,
+      "Aggressive": 354
+    },
+    "seconds": 80.03194119996624,
+    "best_epoch": 1
+  },
+  {
+    "epoch": 2,
+    "train": {
+      "total": 0.5904961758368724,
+      "reconstruction": 0.08466391968163284,
+      "preservation": 0.027518736415014074,
+      "consequence": 0.08532271526149801,
+      "selection": 0.9665279269218445
+    },
+    "validation": {
+      "total": 0.5901158906318046,
+      "reconstruction": 0.0840067973008027,
+      "preservation": 0.02749635337575062,
+      "consequence": 0.08544962458513879,
+      "selection": 0.9670398022677448
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.2055931165814,
+      "Balanced": 852.8983351290226,
+      "Aggressive": 1575.89615162462
+    },
+    "train_target_hard_counts": {
+      "Conservative": 331,
+      "Balanced": 526,
+      "Aggressive": 2103
+    },
+    "train_selected_counts": {
+      "Conservative": 51,
+      "Balanced": 11,
+      "Aggressive": 2898
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 3,
+      "Balanced": 5,
+      "Aggressive": 362
+    },
+    "seconds": 74.52550029999111,
+    "best_epoch": 2
+  },
+  {
+    "epoch": 3,
+    "train": {
+      "total": 0.589093557563988,
+      "reconstruction": 0.08457592977462589,
+      "preservation": 0.02754208786362732,
+      "consequence": 0.08521254330470755,
+      "selection": 0.9639334011722256
+    },
+    "validation": {
+      "total": 0.5908289638725487,
+      "reconstruction": 0.08602933843393584,
+      "preservation": 0.02620834613571296,
+      "consequence": 0.08791496226110974,
+      "selection": 0.9639499193913228
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.4901845231652,
+      "Balanced": 853.3273626640439,
+      "Aggressive": 1575.1825326010585
+    },
+    "train_target_hard_counts": {
+      "Conservative": 335,
+      "Balanced": 530,
+      "Aggressive": 2095
+    },
+    "train_selected_counts": {
+      "Conservative": 46,
+      "Balanced": 29,
+      "Aggressive": 2885
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 15,
+      "Balanced": 17,
+      "Aggressive": 338
+    },
+    "seconds": 74.55865959997755,
+    "best_epoch": 2
+  },
+  {
+    "epoch": 4,
+    "train": {
+      "total": 0.588260764205778,
+      "reconstruction": 0.08450644970745654,
+      "preservation": 0.02751128181714464,
+      "consequence": 0.08519044204338176,
+      "selection": 0.9624279368568112
+    },
+    "validation": {
+      "total": 0.5883886836670541,
+      "reconstruction": 0.08364477520053451,
+      "preservation": 0.02777922384038165,
+      "consequence": 0.08512051576698149,
+      "selection": 0.9643279149725631
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.7144287899137,
+      "Balanced": 852.7210708037019,
+      "Aggressive": 1575.5645799860358
+    },
+    "train_target_hard_counts": {
+      "Conservative": 334,
+      "Balanced": 528,
+      "Aggressive": 2098
+    },
+    "train_selected_counts": {
+      "Conservative": 31,
+      "Balanced": 51,
+      "Aggressive": 2878
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 8,
+      "Balanced": 7,
+      "Aggressive": 355
+    },
+    "seconds": 74.34335090004606,
+    "best_epoch": 4
+  },
+  {
+    "epoch": 5,
+    "train": {
+      "total": 0.5879406647102253,
+      "reconstruction": 0.08450945162692586,
+      "preservation": 0.027526273568337027,
+      "consequence": 0.0851888195284315,
+      "selection": 0.9617763859194678
+    },
+    "validation": {
+      "total": 0.5884731186402811,
+      "reconstruction": 0.08449167983757483,
+      "preservation": 0.027131294851770273,
+      "consequence": 0.08602204568482734,
+      "selection": 0.9627015468236563
+    },
+    "train_target_soft_mass": {
+      "Conservative": 532.392353720963,
+      "Balanced": 851.9068847820163,
+      "Aggressive": 1575.7008412405849
+    },
+    "train_target_hard_counts": {
+      "Conservative": 335,
+      "Balanced": 526,
+      "Aggressive": 2099
+    },
+    "train_selected_counts": {
+      "Conservative": 21,
+      "Balanced": 54,
+      "Aggressive": 2885
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 0,
+      "Balanced": 11,
+      "Aggressive": 359
+    },
+    "seconds": 74.70474879996618,
+    "best_epoch": 4
+  },
+  {
+    "epoch": 6,
+    "train": {
+      "total": 0.5875796588691505,
+      "reconstruction": 0.08447047037047309,
+      "preservation": 0.027536951408192917,
+      "consequence": 0.08515084516760466,
+      "selection": 0.9611432539450155
+    },
+    "validation": {
+      "total": 0.5878341897113903,
+      "reconstruction": 0.08410502301680076,
+      "preservation": 0.02735391806911778,
+      "consequence": 0.08566695878634582,
+      "selection": 0.9622499788129651
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.6579757407308,
+      "Balanced": 852.404122531414,
+      "Aggressive": 1575.9379817470908
+    },
+    "train_target_hard_counts": {
+      "Conservative": 332,
+      "Balanced": 525,
+      "Aggressive": 2103
+    },
+    "train_selected_counts": {
+      "Conservative": 26,
+      "Balanced": 49,
+      "Aggressive": 2885
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 3,
+      "Balanced": 10,
+      "Aggressive": 357
+    },
+    "seconds": 74.72865150001599,
+    "best_epoch": 6
+  },
+  {
+    "epoch": 7,
+    "train": {
+      "total": 0.5871775462820723,
+      "reconstruction": 0.08444872438102155,
+      "preservation": 0.02752535760503363,
+      "consequence": 0.08513440272292576,
+      "selection": 0.9603937405186731
+    },
+    "validation": {
+      "total": 0.5874627325985883,
+      "reconstruction": 0.08396390640252345,
+      "preservation": 0.027452403810378667,
+      "consequence": 0.08548008308217332,
+      "selection": 0.9618246619765823
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.7312496080995,
+      "Balanced": 852.7042498141527,
+      "Aggressive": 1575.5645797774196
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 529,
+      "Aggressive": 2098
+    },
+    "train_selected_counts": {
+      "Conservative": 27,
+      "Balanced": 53,
+      "Aggressive": 2880
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 0,
+      "Balanced": 11,
+      "Aggressive": 359
+    },
+    "seconds": 74.81883210001979,
+    "best_epoch": 7
+  },
+  {
+    "epoch": 8,
+    "train": {
+      "total": 0.587004354998872,
+      "reconstruction": 0.08445387887390884,
+      "preservation": 0.027531030059263512,
+      "consequence": 0.08512290178521259,
+      "selection": 0.960039377373618
+    },
+    "validation": {
+      "total": 0.5868530131675102,
+      "reconstruction": 0.08432602290366147,
+      "preservation": 0.0272321123931859,
+      "consequence": 0.08584681580195556,
+      "selection": 0.9598224195274146
+    },
+    "train_target_soft_mass": {
+      "Conservative": 532.0710822716355,
+      "Balanced": 851.9866928607225,
+      "Aggressive": 1575.9423045441508
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 525,
+      "Aggressive": 2102
+    },
+    "train_selected_counts": {
+      "Conservative": 22,
+      "Balanced": 54,
+      "Aggressive": 2884
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 4,
+      "Balanced": 6,
+      "Aggressive": 360
+    },
+    "seconds": 74.98258710000664,
+    "best_epoch": 8
+  },
+  {
+    "epoch": 9,
+    "train": {
+      "total": 0.5868371161254676,
+      "reconstruction": 0.08443830951645567,
+      "preservation": 0.02752629463132974,
+      "consequence": 0.08513376805427912,
+      "selection": 0.9597335841204669
+    },
+    "validation": {
+      "total": 0.5872862893181878,
+      "reconstruction": 0.08380848757318549,
+      "preservation": 0.02756410720380577,
+      "consequence": 0.08525878638029098,
+      "selection": 0.9618264456053038
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.6601008251309,
+      "Balanced": 852.8280000016093,
+      "Aggressive": 1575.5119790956378
+    },
+    "train_target_hard_counts": {
+      "Conservative": 335,
+      "Balanced": 528,
+      "Aggressive": 2097
+    },
+    "train_selected_counts": {
+      "Conservative": 23,
+      "Balanced": 49,
+      "Aggressive": 2888
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 7,
+      "Aggressive": 361
+    },
+    "seconds": 74.83439259999432,
+    "best_epoch": 8
+  },
+  {
+    "epoch": 10,
+    "train": {
+      "total": 0.586804211139679,
+      "reconstruction": 0.08442666776276923,
+      "preservation": 0.027539662790258188,
+      "consequence": 0.08509582333468102,
+      "selection": 0.9597008887174967
+    },
+    "validation": {
+      "total": 0.5866049441131386,
+      "reconstruction": 0.0844375673580814,
+      "preservation": 0.027142714125079077,
+      "consequence": 0.0858841612129598,
+      "selection": 0.9591239967861691
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.696780897677,
+      "Balanced": 852.4597485736012,
+      "Aggressive": 1575.8435507044196
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 525,
+      "Aggressive": 2102
+    },
+    "train_selected_counts": {
+      "Conservative": 17,
+      "Balanced": 51,
+      "Aggressive": 2892
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 1,
+      "Balanced": 9,
+      "Aggressive": 360
+    },
+    "seconds": 74.84024250000948,
+    "best_epoch": 10
+  },
+  {
+    "epoch": 11,
+    "train": {
+      "total": 0.5866969073140943,
+      "reconstruction": 0.08442640205895578,
+      "preservation": 0.027519897155060962,
+      "consequence": 0.0851114104527074,
+      "selection": 0.959488485632716
+    },
+    "validation": {
+      "total": 0.5864573356267568,
+      "reconstruction": 0.08352365546129845,
+      "preservation": 0.027781327501744838,
+      "consequence": 0.0850121614095327,
+      "selection": 0.9607499683225477
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.6118227317929,
+      "Balanced": 852.6391378119588,
+      "Aggressive": 1575.7491195127368
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 526,
+      "Aggressive": 2101
+    },
+    "train_selected_counts": {
+      "Conservative": 16,
+      "Balanced": 49,
+      "Aggressive": 2895
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 4,
+      "Aggressive": 364
+    },
+    "seconds": 75.56464990001405,
+    "best_epoch": 11
+  },
+  {
+    "epoch": 12,
+    "train": {
+      "total": 0.5862994994666125,
+      "reconstruction": 0.08444057398953954,
+      "preservation": 0.027532185543630575,
+      "consequence": 0.0851189020114976,
+      "selection": 0.9586574127545228
+    },
+    "validation": {
+      "total": 0.5863305330276489,
+      "reconstruction": 0.0842729944635082,
+      "preservation": 0.027215759053423598,
+      "consequence": 0.08575413919783928,
+      "selection": 0.9589271210335396
+    },
+    "train_target_soft_mass": {
+      "Conservative": 530.9140385463834,
+      "Balanced": 853.8047542721033,
+      "Aggressive": 1575.2812864407897
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 532,
+      "Aggressive": 2095
+    },
+    "train_selected_counts": {
+      "Conservative": 14,
+      "Balanced": 34,
+      "Aggressive": 2912
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 0,
+      "Balanced": 6,
+      "Aggressive": 364
+    },
+    "seconds": 83.61001840000972,
+    "best_epoch": 12
+  },
+  {
+    "epoch": 13,
+    "train": {
+      "total": 0.5862478538139446,
+      "reconstruction": 0.08442796827168078,
+      "preservation": 0.027532597188208555,
+      "consequence": 0.08510481497725925,
+      "selection": 0.9585848033428193
+    },
+    "validation": {
+      "total": 0.5862626894100292,
+      "reconstruction": 0.08387293408851365,
+      "preservation": 0.027442396593254967,
+      "consequence": 0.08538359693578772,
+      "selection": 0.9596491088738313
+    },
+    "train_target_soft_mass": {
+      "Conservative": 529.2956101372838,
+      "Balanced": 855.570214793086,
+      "Aggressive": 1575.134254179895
+    },
+    "train_target_hard_counts": {
+      "Conservative": 330,
+      "Balanced": 537,
+      "Aggressive": 2093
+    },
+    "train_selected_counts": {
+      "Conservative": 19,
+      "Balanced": 43,
+      "Aggressive": 2898
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 6,
+      "Aggressive": 362
+    },
+    "seconds": 77.72913240001071,
+    "best_epoch": 13
+  },
+  {
+    "epoch": 14,
+    "train": {
+      "total": 0.5862339967005962,
+      "reconstruction": 0.08439073453883866,
+      "preservation": 0.027542557109247995,
+      "consequence": 0.0850787886896649,
+      "selection": 0.9586379848621988
+    },
+    "validation": {
+      "total": 0.5862069883862058,
+      "reconstruction": 0.0839635982304006,
+      "preservation": 0.027429790633755762,
+      "consequence": 0.08548930388044666,
+      "selection": 0.9593191372381674
+    },
+    "train_target_soft_mass": {
+      "Conservative": 532.3346026316285,
+      "Balanced": 851.3036180734634,
+      "Aggressive": 1576.361859254539
+    },
+    "train_target_hard_counts": {
+      "Conservative": 332,
+      "Balanced": 522,
+      "Aggressive": 2106
+    },
+    "train_selected_counts": {
+      "Conservative": 16,
+      "Balanced": 49,
+      "Aggressive": 2895
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 8,
+      "Aggressive": 360
+    },
+    "seconds": 78.28141799999867,
+    "best_epoch": 14
+  },
+  {
+    "epoch": 15,
+    "train": {
+      "total": 0.5862938375086397,
+      "reconstruction": 0.0844117648295454,
+      "preservation": 0.02753999601244121,
+      "consequence": 0.08508748744387884,
+      "selection": 0.9587131471247287
+    },
+    "validation": {
+      "total": 0.5859357511675035,
+      "reconstruction": 0.08479357857156444,
+      "preservation": 0.02696348436780878,
+      "consequence": 0.08656143614569226,
+      "selection": 0.9568743737968238
+    },
+    "train_target_soft_mass": {
+      "Conservative": 530.8575854972005,
+      "Balanced": 853.4878059998155,
+      "Aggressive": 1575.6546882018447
+    },
+    "train_target_hard_counts": {
+      "Conservative": 331,
+      "Balanced": 529,
+      "Aggressive": 2100
+    },
+    "train_selected_counts": {
+      "Conservative": 9,
+      "Balanced": 44,
+      "Aggressive": 2907
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 12,
+      "Aggressive": 356
+    },
+    "seconds": 79.89318479999201,
+    "best_epoch": 15
+  },
+  {
+    "epoch": 16,
+    "train": {
+      "total": 0.586016305717262,
+      "reconstruction": 0.08443589546793216,
+      "preservation": 0.027530564166404106,
+      "consequence": 0.08511420029240685,
+      "selection": 0.9581029138049564
+    },
+    "validation": {
+      "total": 0.5870130767693391,
+      "reconstruction": 0.08415557726009472,
+      "preservation": 0.027298100524254746,
+      "consequence": 0.08576846009976155,
+      "selection": 0.9604883735244338
+    },
+    "train_target_soft_mass": {
+      "Conservative": 532.2409986332059,
+      "Balanced": 851.768498569727,
+      "Aggressive": 1575.9905828163028
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 523,
+      "Aggressive": 2104
+    },
+    "train_selected_counts": {
+      "Conservative": 11,
+      "Balanced": 47,
+      "Aggressive": 2902
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 0,
+      "Balanced": 10,
+      "Aggressive": 360
+    },
+    "seconds": 79.84007949999068,
+    "best_epoch": 15
+  },
+  {
+    "epoch": 17,
+    "train": {
+      "total": 0.5859488195664174,
+      "reconstruction": 0.08437799974470525,
+      "preservation": 0.027545786699330485,
+      "consequence": 0.08506230123945184,
+      "selection": 0.9580984030220959
+    },
+    "validation": {
+      "total": 0.585995906752509,
+      "reconstruction": 0.08491434853624653,
+      "preservation": 0.02684746124857181,
+      "consequence": 0.08645581945374205,
+      "selection": 0.956841812262664
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.8360670283437,
+      "Balanced": 852.1734301373363,
+      "Aggressive": 1575.9905827865005
+    },
+    "train_target_hard_counts": {
+      "Conservative": 332,
+      "Balanced": 524,
+      "Aggressive": 2104
+    },
+    "train_selected_counts": {
+      "Conservative": 19,
+      "Balanced": 48,
+      "Aggressive": 2893
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 3,
+      "Aggressive": 365
+    },
+    "seconds": 80.20918329997221,
+    "best_epoch": 15
+  },
+  {
+    "epoch": 18,
+    "train": {
+      "total": 0.5858731239228635,
+      "reconstruction": 0.08441467174404377,
+      "preservation": 0.027539594093891416,
+      "consequence": 0.0850991586978371,
+      "selection": 0.9578614006171355
+    },
+    "validation": {
+      "total": 0.5861591835279722,
+      "reconstruction": 0.08501821027414219,
+      "preservation": 0.026827662418017515,
+      "consequence": 0.08664914901192124,
+      "selection": 0.956891220002561
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.1637764945626,
+      "Balanced": 852.6633068397641,
+      "Aggressive": 1576.1729974970222
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 523,
+      "Aggressive": 2104
+    },
+    "train_selected_counts": {
+      "Conservative": 14,
+      "Balanced": 46,
+      "Aggressive": 2900
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 7,
+      "Balanced": 7,
+      "Aggressive": 356
+    },
+    "seconds": 80.70245119999163,
+    "best_epoch": 15
+  },
+  {
+    "epoch": 19,
+    "train": {
+      "total": 0.5859103853638108,
+      "reconstruction": 0.08440941626558433,
+      "preservation": 0.02754129674789068,
+      "consequence": 0.0850837445138274,
+      "selection": 0.9579519184860024
+    },
+    "validation": {
+      "total": 0.5855273153330829,
+      "reconstruction": 0.08369217378062171,
+      "preservation": 0.02758987475488637,
+      "consequence": 0.08506413118259327,
+      "selection": 0.9586086708146173
+    },
+    "train_target_soft_mass": {
+      "Conservative": 532.0710823014379,
+      "Balanced": 852.127277046442,
+      "Aggressive": 1575.8017204329371
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 525,
+      "Aggressive": 2102
+    },
+    "train_selected_counts": {
+      "Conservative": 17,
+      "Balanced": 53,
+      "Aggressive": 2890
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 2,
+      "Aggressive": 366
+    },
+    "seconds": 77.07617099996423,
+    "best_epoch": 19
+  },
+  {
+    "epoch": 20,
+    "train": {
+      "total": 0.5857479788161613,
+      "reconstruction": 0.08439963141808639,
+      "preservation": 0.027536309460127677,
+      "consequence": 0.08508353255487777,
+      "selection": 0.9576487557308094
+    },
+    "validation": {
+      "total": 0.5859966761357075,
+      "reconstruction": 0.08454698847757804,
+      "preservation": 0.027027274990403975,
+      "consequence": 0.08601032032354458,
+      "selection": 0.9576843332599949
+    },
+    "train_target_soft_mass": {
+      "Conservative": 531.3681615963578,
+      "Balanced": 852.8301979750395,
+      "Aggressive": 1575.8017207309604
+    },
+    "train_target_hard_counts": {
+      "Conservative": 333,
+      "Balanced": 525,
+      "Aggressive": 2102
+    },
+    "train_selected_counts": {
+      "Conservative": 16,
+      "Balanced": 49,
+      "Aggressive": 2895
+    },
+    "validation_target_soft_mass": {
+      "Conservative": 69.03920203447342,
+      "Balanced": 103.75481236726046,
+      "Aggressive": 197.2059962451458
+    },
+    "validation_target_hard_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selected_counts": {
+      "Conservative": 2,
+      "Balanced": 6,
+      "Aggressive": 362
+    },
+    "seconds": 77.1536436000024,
+    "best_epoch": 19
+  }
+]

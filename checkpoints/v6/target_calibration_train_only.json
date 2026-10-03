@@ -1,0 +1,37 @@
+{
+  "method": "5% relative fidelity eligibility; eligible candidates ranked by mean train-median/IQR normalized preservation distortion and consequence L1",
+  "fit_split": "data/splits/train.txt",
+  "fit_observations": 8880,
+  "component_order": [
+    "preservation_distortion",
+    "consequence_l1"
+  ],
+  "median": [
+    0.00441405177116394,
+    0.11060812324285507
+  ],
+  "iqr": [
+    0.036563098430633545,
+    0.07987094204872847
+  ],
+  "relative_fidelity_tolerance": 0.05,
+  "threshold_analysis": "diagnostics/v6_selection/v6_training_only_threshold_analysis.json",
+  "old_v4_reference_l1_target_counts": {
+    "conservative": 9,
+    "balanced": 20,
+    "aggressive": 2931
+  },
+  "v6_multiobjective_target_counts": {
+    "conservative": 12,
+    "balanced": 21,
+    "aggressive": 2927
+  },
+  "eligible_candidate_frequency": {
+    "conservative": 23,
+    "balanced": 31,
+    "aggressive": 2938
+  },
+  "training_sample_count": 2960,
+  "test_split_loaded": false,
+  "validation_used_for_fit": false
+}

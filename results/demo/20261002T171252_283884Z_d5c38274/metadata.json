@@ -1,0 +1,84 @@
+{
+  "model": "Paper 1 \u2014 V3",
+  "checkpoint": "checkpoints\\v3\\paper1_v3_best.pth",
+  "best_epoch": 8,
+  "mode": "inference only",
+  "input_filename": "upload.png",
+  "input_saved": false,
+  "input_original_size": [
+    313,
+    380
+  ],
+  "model_input_size": [
+    256,
+    256
+  ],
+  "preprocessing": "EXIF transpose, RGB conversion, resize to 256x256 with Lanczos, float32 ToTensor-equivalent scaling to [0,1]",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "selected_candidate": "Balanced",
+  "preservation_scores": {
+    "Conservative": 0.9805111885070801,
+    "Balanced": 0.9615227580070496,
+    "Aggressive": 0.9148178100585938
+  },
+  "utilities": {
+    "Conservative": 4.944935321807861,
+    "Balanced": 6.130809783935547,
+    "Aggressive": 3.3475005626678467
+  },
+  "selection_weights": {
+    "Conservative": 0.22341559827327728,
+    "Balanced": 0.7313617467880249,
+    "Aggressive": 0.0452226921916008
+  },
+  "metrics": {
+    "original": {
+      "uiqm": 1.8718218180497748,
+      "uciqe": 5.397523403167725,
+      "psnr": 14.9080126476331,
+      "ssim": 0.464857816696167
+    },
+    "conservative": {
+      "uiqm": 1.5444473591980654,
+      "uciqe": 5.4633965492248535,
+      "delta_uiqm": -0.32737445885170935,
+      "delta_uciqe": 0.0658731460571289,
+      "psnr": 16.523071925134445,
+      "ssim": 0.4958437383174896,
+      "delta_psnr": 1.615059277501345,
+      "delta_ssim": 0.030985921621322632
+    },
+    "balanced": {
+      "uiqm": 1.943499790890893,
+      "uciqe": 4.698030948638916,
+      "delta_uiqm": 0.07167797284111832,
+      "delta_uciqe": -0.6994924545288086,
+      "psnr": 17.333079971137334,
+      "ssim": 0.501178503036499,
+      "delta_psnr": 2.4250673235042335,
+      "delta_ssim": 0.03632068634033203
+    },
+    "aggressive": {
+      "uiqm": 3.0204558492589526,
+      "uciqe": 4.395699501037598,
+      "delta_uiqm": 1.1486340312091778,
+      "delta_uciqe": -1.001823902130127,
+      "psnr": 15.434666406194355,
+      "ssim": 0.44939008355140686,
+      "delta_psnr": 0.5266537585612543,
+      "delta_ssim": -0.015467733144760132
+    },
+    "selected": {
+      "uiqm": 1.943499790890893,
+      "uciqe": 4.698030948638916,
+      "delta_uiqm": 0.07167797284111832,
+      "delta_uciqe": -0.6994924545288086,
+      "psnr": 17.333079971137334,
+      "ssim": 0.501178503036499,
+      "delta_psnr": 2.4250673235042335,
+      "delta_ssim": 0.03632068634033203
+    }
+  },
+  "reference_metrics": "**Reference-based metrics:** PSNR/SSIM computed for Original and every candidate against the same uploaded reference.\n\n**No-reference underwater quality metrics:** UIQM and UCIQE available."
+}

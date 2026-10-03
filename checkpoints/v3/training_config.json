@@ -1,0 +1,58 @@
+{
+  "experiment": "Paper 1 V3 fixed-preservation controlled run",
+  "initialization": "random from scratch; no checkpoint loaded",
+  "seed": 42,
+  "deterministic_algorithms": true,
+  "pytorch_version": "2.13.0+cu130",
+  "cuda_available": true,
+  "cuda_version": "13.0",
+  "gpu_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "batch_size": 8,
+  "learning_rate": 0.0001,
+  "epochs": 8,
+  "optimizer": "Adam",
+  "scheduler": null,
+  "early_stopping": false,
+  "amp_enabled": true,
+  "gradient_clip_norm": 1.0,
+  "validation_frequency_epochs": 1,
+  "checkpoint_frequency_epochs": 1,
+  "best_checkpoint_criterion": "minimum validation total loss",
+  "loss_weights": {
+    "reconstruction": 1.0,
+    "preservation": 0.2,
+    "consequence": 0.2,
+    "selection": 0.5
+  },
+  "dataset_root": "C:\\Users\\Harini\\Paper1_UIE\\data\\EUVP\\EUVP-Dataset\\EUVP\\Paired\\underwater_imagenet",
+  "training_split": "data/splits/train.txt",
+  "validation_split": "data/splits/val.txt",
+  "test_split_used": false,
+  "preprocessing": "paired RGB ToTensor [0,1]; train-only paired horizontal flip",
+  "output_dir": "C:\\Users\\Harini\\Paper1_UIE\\checkpoints\\v3",
+  "frozen_v2_checkpoint": "C:\\Users\\Harini\\Paper1_UIE\\checkpoints\\v2\\paper1_v2_epoch_006.pth",
+  "frozen_v2_sha256_before": "BBC8027FF23DCD477CD2E4BD0C95D7A42222AAAAE2E6A6197AF3D198149C53D1",
+  "batch_diagnostic_logging": {
+    "file": "batch_diagnostics.jsonl",
+    "failure_records": "failure_epoch_*_batch_*.json",
+    "fields": [
+      "epoch",
+      "batch_index",
+      "filenames",
+      "scaler_scale",
+      "model_output_finiteness",
+      "loss_finiteness",
+      "scaled_gradient_finiteness",
+      "unscaled_gradient_finiteness",
+      "gradient_norm",
+      "first_offending_parameter",
+      "optimizer_step_executed"
+    ],
+    "no_step_amp_fp32_diagnostic_on_gradient_failure": true
+  },
+  "amp_stability_correction": {
+    "resume_scale": 8192.0,
+    "growth_tracker_reset": true,
+    "evidence": "Same epoch-5 failure batch was finite for all loss-component gradients at AMP scales <= 16384 and non-finite at 32768/65536; FP32 was finite."
+  }
+}

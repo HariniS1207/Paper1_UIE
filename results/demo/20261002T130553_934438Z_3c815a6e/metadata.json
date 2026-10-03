@@ -1,0 +1,36 @@
+{
+  "model": "Paper 1 \u2014 V3",
+  "checkpoint": "checkpoints\\v3\\paper1_v3_best.pth",
+  "best_epoch": 8,
+  "mode": "inference only",
+  "input_filename": "upload.png",
+  "input_saved": false,
+  "input_original_size": [
+    516,
+    387
+  ],
+  "model_input_size": [
+    256,
+    256
+  ],
+  "preprocessing": "EXIF transpose, RGB conversion, resize to 256x256 with Lanczos, float32 ToTensor-equivalent scaling to [0,1]",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "selected_candidate": "Balanced",
+  "preservation_scores": {
+    "Conservative": 0.9713819026947021,
+    "Balanced": 0.944676399230957,
+    "Aggressive": 0.891664981842041
+  },
+  "utilities": {
+    "Conservative": 1.45003080368042,
+    "Balanced": 2.5959513187408447,
+    "Aggressive": -0.76576828956604
+  },
+  "selection_weights": {
+    "Conservative": 0.23505067825317383,
+    "Balanced": 0.7393132448196411,
+    "Aggressive": 0.025636114180088043
+  },
+  "reference_metrics": "Reference metrics unavailable \u2014 no ground-truth image supplied."
+}

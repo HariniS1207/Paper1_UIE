@@ -14,56 +14,59 @@ $$
 
 where $F(\cdot)$ is a fixed multi-scale feature extractor and $D(\cdot, \cdot)$ is a bounded feature distortion measure.
 
-The current implementation uses a fixed, frozen, non-trainable feature bank:
+The fixed feature bank contains raw luma, independently standardized luma, two opponent-chroma channels, and Sobel gradient magnitude. Raw luma and standardized luma/chroma are pooled at fine, $2\times2$, and $4\times4$ scales. Sobel magnitude is computed from raw luma and pooled by $2\times2$.
 
-- fine-scale grayscale structure
-- mid-scale grayscale structure after $2\times2$ pooling
-- coarse-scale grayscale structure after $4\times4$ pooling
-- gradient magnitude information derived from Sobel responses
-
-The feature distortion is computed as a normalized absolute difference:
+For RGB input in $[0,1]$:
 
 $$
-D(f_x, f_e) = \frac{|f_x - f_e|}{|f_x| + \epsilon}
+Y = 0.299R + 0.587G + 0.114B,\qquad
+Z = \frac{Y-\mu(Y)}{\sigma(Y)+\epsilon}
 $$
 
-followed by a bounded transform:
-
 $$
-\tilde{D} = \frac{D}{1 + D}
+C_{rg}=R-G,\qquad C_{by}=\frac{R+G}{2}-B
 $$
 
-which keeps the distortion stable and prevents runaway values.
-
-The preservation score is then a weighted combination of the per-scale fidelity terms:
+At scale $s\in\{1,2,4\}$, let $P_s$ denote identity, $2\times2$ average pooling, or $4\times4$ average pooling. Define the per-scale distortions:
 
 $$
-P(x, e) = w_f P_f + w_m P_m + w_c P_c + w_g P_g
+D_I^s=\operatorname{mean}|P_s(Y_x)-P_s(Y_e)|
 $$
 
-with:
-
-- $w_f = 0.30$
-- $w_m = 0.25$
-- $w_c = 0.20$
-- $w_g = 0.25$
-
-and each component is:
+$$
+D_S^s=\operatorname{mean}\left[\rho\left(
+\frac{|P_s(Z_x)-P_s(Z_e)|}
+{\operatorname{mean}(|P_s(Z_x)|)+\epsilon}
+\right)\right]
+$$
 
 $$
-P_s = 1 - \mathrm{mean}(\tilde{D}_s)
+D_C^s=\operatorname{mean}_{c\in\{rg,by\}}
+\left[\rho\left(\frac{|P_s(C_{x,c})-P_s(C_{e,c})|}{2}\right)\right],\qquad
+\rho(t)=\frac{t}{1+t}
 $$
+
+The raw-luma difference needs no relative normalization because luma is in $[0,1]$. The opponent-channel difference is at most 2, so it is normalized by that fixed range before bounding. Standardized structure retains the existing per-image relative normalization and bounded difference. Let $D_G$ be the existing relative bounded difference between the pooled Sobel-magnitude maps.
+
+Blend the three luma/chroma terms equally at each scale, then preserve the existing scale and gradient weights:
+
+$$
+D_s=\frac{D_I^s+D_S^s+D_C^s}{3},\qquad
+P(x,e)=1-\left(0.30D_1+0.25D_2+0.20D_4+0.25D_G\right)
+$$
+
+The spatial map uses the same per-pixel blend at each scale, resized and combined with the existing $0.50/0.30/0.20$ fine/mid/coarse map weights. No trainable preservation parameters are introduced. The module remains differentiable almost everywhere.
 
 ## Rationale
 
-This formulation avoids the common failure mode of a trainable scalar preservation head that can simply output values near 1 for almost every candidate. Instead, preservation is measured directly from the image content itself.
+This formulation avoids a trainable scalar preservation head that could self-report high scores. Raw luma adds sensitivity to brightness/intensity changes; standardized luma retains relative structure sensitivity; opponent chroma adds fixed color sensitivity; and Sobel magnitude measures edge/detail differences.
 
 The module evaluates multiple scales of information:
 
-- fine scale captures local structure and texture retention
-- mid scale captures intermediate spatial relationships
-- coarse scale captures global scene structure
-- gradient scale captures edge and contour preservation
+- raw-luma scales capture intensity fidelity from local to coarse structure
+- standardized-luma scales capture relative spatial structure and texture
+- opponent-chroma scales capture red/green and yellow/blue color changes
+- the gradient scale captures edge-strength and contour changes
 
 This creates a measurable and interpretable notion of what is preserved after enhancement.
 
@@ -72,8 +75,11 @@ This creates a measurable and interpretable notion of what is preserved after en
 The implementation is located at `src/models/information_preservation.py` and uses:
 
 - grayscale conversion with standard luma weights: $0.299R + 0.587G + 0.114B$
+- raw luma pyramids with fixed-range absolute distortion
+- independently standardized luma pyramids with relative bounded distortion
+- fixed opponent channels $R-G$ and $(R+G)/2-B$ with a fixed range of 2
 - Sobel-based gradient magnitude extraction
-- per-image normalization to reduce sensitivity to global illumination shifts
+- per-image normalization only for the standardized-structure branch
 - mean distortion reduction across channel and spatial dimensions
 - final clamp to `[0,1]`
 
@@ -84,7 +90,7 @@ The output includes:
 
 ## Normalization and stability
 
-The distortion term is intentionally bounded and normalized to avoid a trainable head collapsing to near-1 values. The feature difference is normalized by the per-image intensity scale and then transformed through a monotonic saturation function.
+Standardized-structure, chroma, and Sobel distortions use bounded transforms. Raw-luma distortion is bounded by the input range. The fixed branches contain no trainable parameters. Independent grayscale standardization intentionally makes the structure branch invariant to global affine intensity changes; the raw-luma branch ensures those changes still lower the overall preservation score.
 
 This keeps the score numerically stable under minibatch training and GPU execution.
 
@@ -96,10 +102,10 @@ The score should satisfy the following ordering on realistic distortions:
 - mild blur/noise/contrast change $\rightarrow$ moderate reduction
 - strong enhancement, severe smoothing, or strong color distortion $\rightarrow$ lower preservation
 
-This behavior is validated by the monotonicity test in `src/models/test_information_preservation_monotonic.py`, which requires the ordering `identity > mild > strong > severe`.
+Controlled tests in `src/models/test_information_preservation_monotonic.py` report component and total distortions for identity, positive/negative brightness changes, contrast, a luma-preserving color cast, blur, noise, edge destruction, combined distortion, and a real EUVP training image.
 
 ## Limitations
 
-This is a fixed, physics-agnostic preservation proxy rather than a full optical or degradation model. It is intentionally interpretable and stable, but it is not tied to a specific underwater radiative transfer model. It should therefore be viewed as a practical information-preservation signal rather than a full physical fidelity model.
+This is a fixed, physics-agnostic preservation proxy rather than a full optical or degradation model. Raw-luma sensitivity also penalizes legitimate exposure correction, and the two opponent channels are not perceptually uniform. The existing zero-padded Sobel convolution can create a small boundary response to a uniform brightness offset; the raw-luma branch is the intended global-intensity signal. It is a practical information-preservation signal, not calibrated physical ground truth.
 
 It is best used as a research signal for candidate selection and candidate comparison, not as a calibrated physical ground truth metric.

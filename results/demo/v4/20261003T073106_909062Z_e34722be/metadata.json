@@ -1,0 +1,83 @@
+{
+  "model": "Paper 1 \u2014 V4",
+  "checkpoint": "checkpoints\\v4\\paper1_v4_best.pth",
+  "best_epoch": 10,
+  "mode": "inference only",
+  "input_filename": "upload.png",
+  "input_saved": false,
+  "input_original_size": [
+    632,
+    316
+  ],
+  "model_input_size": [
+    256,
+    256
+  ],
+  "preprocessing": "EXIF transpose, RGB conversion, resize to 256x256 with Lanczos, float32 ToTensor-equivalent scaling to [0,1]",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "selected_candidate": "Aggressive",
+  "preservation_scores": {
+    "Conservative": 0.9995580911636353,
+    "Balanced": 0.9980351328849792,
+    "Aggressive": 0.944912314414978
+  },
+  "utilities": {
+    "Conservative": -5.255293369293213,
+    "Balanced": -4.770627975463867,
+    "Aggressive": 2.286156177520752
+  },
+  "selection_weights": {
+    "Conservative": 0.0005298902397044003,
+    "Balanced": 0.0008603464812040329,
+    "Aggressive": 0.9986097812652588
+  },
+  "metrics": {
+    "original": {
+      "uiqm": 1.7604252377327503,
+      "uciqe": 4.6526899337768555,
+      "preservation": 1.0,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "conservative": {
+      "uiqm": 1.7537676729144471,
+      "uciqe": 4.556270122528076,
+      "preservation": 0.9995580911636353,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "balanced": {
+      "uiqm": 1.7184600035242457,
+      "uciqe": 4.54926872253418,
+      "preservation": 0.9980351328849792,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "aggressive": {
+      "uiqm": 2.0319618333163993,
+      "uciqe": 5.372202396392822,
+      "preservation": 0.944912314414978,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "selected": {
+      "uiqm": 2.0319618333163993,
+      "uciqe": 5.372202396392822,
+      "preservation": 0.944912314414978,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    }
+  },
+  "reference_status": "**Reference metrics:** PSNR/SSIM unavailable \u2014 no ground-truth image supplied."
+}

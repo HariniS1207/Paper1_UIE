@@ -1,0 +1,782 @@
+[
+  {
+    "epoch": 1,
+    "train": {
+      "total": 0.5178655202324326,
+      "reconstruction": 0.08441783884489859,
+      "preservation": 0.0280756998354116,
+      "consequence": 0.08639973631581745,
+      "selection": 0.8211051877084616
+    },
+    "validation": {
+      "total": 0.3927879608966209,
+      "reconstruction": 0.06708539756568703,
+      "preservation": 0.03846246547795631,
+      "consequence": 0.06846478416307553,
+      "selection": 0.6086342288030161
+    },
+    "train_target_counts": {
+      "Conservative": 333,
+      "Balanced": 526,
+      "Aggressive": 2101
+    },
+    "train_selector_counts": {
+      "Conservative": 56,
+      "Balanced": 11,
+      "Aggressive": 2893
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 0,
+      "Balanced": 0,
+      "Aggressive": 370
+    },
+    "seconds": 112.80531499994686,
+    "best_epoch": 1
+  },
+  {
+    "epoch": 2,
+    "train": {
+      "total": 0.37804120038006755,
+      "reconstruction": 0.07144908435844086,
+      "preservation": 0.03680492819261712,
+      "consequence": 0.07438794541600588,
+      "selection": 0.568707081574846
+    },
+    "validation": {
+      "total": 0.35469216301634504,
+      "reconstruction": 0.07081326185851483,
+      "preservation": 0.037369720859302055,
+      "consequence": 0.07379550378064852,
+      "selection": 0.5232917099385648
+    },
+    "train_target_counts": {
+      "Conservative": 337,
+      "Balanced": 526,
+      "Aggressive": 2097
+    },
+    "train_selector_counts": {
+      "Conservative": 15,
+      "Balanced": 50,
+      "Aggressive": 2895
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 12,
+      "Balanced": 11,
+      "Aggressive": 347
+    },
+    "seconds": 127.28435790003277,
+    "best_epoch": 2
+  },
+  {
+    "epoch": 3,
+    "train": {
+      "total": 0.3510096392518765,
+      "reconstruction": 0.07193223973987876,
+      "preservation": 0.03725735506395231,
+      "consequence": 0.07497377734933351,
+      "selection": 0.513262346118525
+    },
+    "validation": {
+      "total": 0.3445746561965427,
+      "reconstruction": 0.07387683754031722,
+      "preservation": 0.03589504417535421,
+      "consequence": 0.07793059763876167,
+      "selection": 0.49586537496463673
+    },
+    "train_target_counts": {
+      "Conservative": 335,
+      "Balanced": 521,
+      "Aggressive": 2104
+    },
+    "train_selector_counts": {
+      "Conservative": 75,
+      "Balanced": 382,
+      "Aggressive": 2503
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 11,
+      "Balanced": 74,
+      "Aggressive": 285
+    },
+    "seconds": 141.28422159998445,
+    "best_epoch": 3
+  },
+  {
+    "epoch": 4,
+    "train": {
+      "total": 0.3428248030712476,
+      "reconstruction": 0.07281288807657925,
+      "preservation": 0.03696578628811482,
+      "consequence": 0.07605829156331113,
+      "selection": 0.494814199430717
+    },
+    "validation": {
+      "total": 0.3385676319534714,
+      "reconstruction": 0.0724226302794508,
+      "preservation": 0.036979488786813376,
+      "consequence": 0.07578149993677397,
+      "selection": 0.487185607890825
+    },
+    "train_target_counts": {
+      "Conservative": 332,
+      "Balanced": 528,
+      "Aggressive": 2100
+    },
+    "train_selector_counts": {
+      "Conservative": 72,
+      "Balanced": 547,
+      "Aggressive": 2341
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 7,
+      "Balanced": 66,
+      "Aggressive": 297
+    },
+    "seconds": 140.79897980001988,
+    "best_epoch": 4
+  },
+  {
+    "epoch": 5,
+    "train": {
+      "total": 0.3353591488422574,
+      "reconstruction": 0.07268426948906602,
+      "preservation": 0.03708469305892249,
+      "consequence": 0.07580671302370123,
+      "selection": 0.4801931958217677
+    },
+    "validation": {
+      "total": 0.3285060918008959,
+      "reconstruction": 0.07374219749424908,
+      "preservation": 0.036119983627184014,
+      "consequence": 0.07763774306387515,
+      "selection": 0.4640246984120962
+    },
+    "train_target_counts": {
+      "Conservative": 335,
+      "Balanced": 528,
+      "Aggressive": 2097
+    },
+    "train_selector_counts": {
+      "Conservative": 101,
+      "Balanced": 490,
+      "Aggressive": 2369
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 12,
+      "Balanced": 67,
+      "Aggressive": 291
+    },
+    "seconds": 145.9228736999794,
+    "best_epoch": 5
+  },
+  {
+    "epoch": 6,
+    "train": {
+      "total": 0.32116528155433166,
+      "reconstruction": 0.07279234583917502,
+      "preservation": 0.03697356318400518,
+      "consequence": 0.07592034602688777,
+      "selection": 0.4515883080887835
+    },
+    "validation": {
+      "total": 0.33580185867644646,
+      "reconstruction": 0.07649212970926955,
+      "preservation": 0.03419733454246779,
+      "consequence": 0.08117368640126409,
+      "selection": 0.47247104757540936
+    },
+    "train_target_counts": {
+      "Conservative": 333,
+      "Balanced": 523,
+      "Aggressive": 2104
+    },
+    "train_selector_counts": {
+      "Conservative": 159,
+      "Balanced": 423,
+      "Aggressive": 2378
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 38,
+      "Balanced": 67,
+      "Aggressive": 265
+    },
+    "seconds": 154.12813999998616,
+    "best_epoch": 5
+  },
+  {
+    "epoch": 7,
+    "train": {
+      "total": 0.3086634249501937,
+      "reconstruction": 0.07288750766499623,
+      "preservation": 0.03674100875049024,
+      "consequence": 0.07595976891147124,
+      "selection": 0.42647152154932955
+    },
+    "validation": {
+      "total": 0.3082064380516877,
+      "reconstruction": 0.07544079056462726,
+      "preservation": 0.034921396614329234,
+      "consequence": 0.07995487121311394,
+      "selection": 0.4195807869369919
+    },
+    "train_target_counts": {
+      "Conservative": 330,
+      "Balanced": 530,
+      "Aggressive": 2100
+    },
+    "train_selector_counts": {
+      "Conservative": 227,
+      "Balanced": 396,
+      "Aggressive": 2337
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 30,
+      "Balanced": 67,
+      "Aggressive": 273
+    },
+    "seconds": 180.1110274999519,
+    "best_epoch": 7
+  },
+  {
+    "epoch": 8,
+    "train": {
+      "total": 0.2980316162109375,
+      "reconstruction": 0.07317695953958743,
+      "preservation": 0.036641451751662266,
+      "consequence": 0.076263499582136,
+      "selection": 0.40454733323060427
+    },
+    "validation": {
+      "total": 0.2945939230757791,
+      "reconstruction": 0.07179836099212233,
+      "preservation": 0.037014782146827595,
+      "consequence": 0.07515673572952683,
+      "selection": 0.400722515603175
+    },
+    "train_target_counts": {
+      "Conservative": 332,
+      "Balanced": 526,
+      "Aggressive": 2102
+    },
+    "train_selector_counts": {
+      "Conservative": 255,
+      "Balanced": 421,
+      "Aggressive": 2284
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 36,
+      "Balanced": 46,
+      "Aggressive": 288
+    },
+    "seconds": 151.20010940002976,
+    "best_epoch": 8
+  },
+  {
+    "epoch": 9,
+    "train": {
+      "total": 0.2859252144154665,
+      "reconstruction": 0.073811611905694,
+      "preservation": 0.03625063215558593,
+      "consequence": 0.07709103207531813,
+      "selection": 0.3788905398086393
+    },
+    "validation": {
+      "total": 0.28789646287222165,
+      "reconstruction": 0.07444805434426746,
+      "preservation": 0.03551255887424624,
+      "consequence": 0.07892676422724852,
+      "selection": 0.38112108771865433
+    },
+    "train_target_counts": {
+      "Conservative": 334,
+      "Balanced": 532,
+      "Aggressive": 2094
+    },
+    "train_selector_counts": {
+      "Conservative": 298,
+      "Balanced": 448,
+      "Aggressive": 2214
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 38,
+      "Balanced": 56,
+      "Aggressive": 276
+    },
+    "seconds": 161.18143150000833,
+    "best_epoch": 9
+  },
+  {
+    "epoch": 10,
+    "train": {
+      "total": 0.278675417481242,
+      "reconstruction": 0.07414617680415914,
+      "preservation": 0.035947822618323404,
+      "consequence": 0.0775965245289577,
+      "selection": 0.3636407411336345
+    },
+    "validation": {
+      "total": 0.2788090557665438,
+      "reconstruction": 0.07172199777654699,
+      "preservation": 0.03681017408097113,
+      "consequence": 0.07501150305206711,
+      "selection": 0.369445443687004
+    },
+    "train_target_counts": {
+      "Conservative": 335,
+      "Balanced": 531,
+      "Aggressive": 2094
+    },
+    "train_selector_counts": {
+      "Conservative": 326,
+      "Balanced": 472,
+      "Aggressive": 2162
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 37,
+      "Balanced": 46,
+      "Aggressive": 287
+    },
+    "seconds": 191.4889017000096,
+    "best_epoch": 10
+  },
+  {
+    "epoch": 11,
+    "train": {
+      "total": 0.27722238731142634,
+      "reconstruction": 0.07405202849893956,
+      "preservation": 0.035915761848760615,
+      "consequence": 0.07740971779299749,
+      "selection": 0.36101052417416707
+    },
+    "validation": {
+      "total": 0.26998304064209394,
+      "reconstruction": 0.07433894304810344,
+      "preservation": 0.03502345945988152,
+      "consequence": 0.07888521600413967,
+      "selection": 0.3457247215398663
+    },
+    "train_target_counts": {
+      "Conservative": 333,
+      "Balanced": 528,
+      "Aggressive": 2099
+    },
+    "train_selector_counts": {
+      "Conservative": 325,
+      "Balanced": 467,
+      "Aggressive": 2168
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 42,
+      "Balanced": 57,
+      "Aggressive": 271
+    },
+    "seconds": 184.813510100008,
+    "best_epoch": 11
+  },
+  {
+    "epoch": 12,
+    "train": {
+      "total": 0.27121802781884735,
+      "reconstruction": 0.07366987704425244,
+      "preservation": 0.036067987077340886,
+      "consequence": 0.07690603559887087,
+      "selection": 0.3499066911157963
+    },
+    "validation": {
+      "total": 0.3219306278873134,
+      "reconstruction": 0.07870351982277793,
+      "preservation": 0.032704735124433365,
+      "consequence": 0.08469961648051803,
+      "selection": 0.4394924726035144
+    },
+    "train_target_counts": {
+      "Conservative": 329,
+      "Balanced": 532,
+      "Aggressive": 2099
+    },
+    "train_selector_counts": {
+      "Conservative": 319,
+      "Balanced": 463,
+      "Aggressive": 2178
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 50,
+      "Balanced": 79,
+      "Aggressive": 241
+    },
+    "seconds": 145.91436360002263,
+    "best_epoch": 11
+  },
+  {
+    "epoch": 13,
+    "train": {
+      "total": 0.2693959929049015,
+      "reconstruction": 0.07390277799520943,
+      "preservation": 0.03594182772008148,
+      "consequence": 0.07719821933958981,
+      "selection": 0.34573041094117796
+    },
+    "validation": {
+      "total": 0.26125542094578613,
+      "reconstruction": 0.07338851762784494,
+      "preservation": 0.03557104398874012,
+      "consequence": 0.07779337014700916,
+      "selection": 0.33038803861300287
+    },
+    "train_target_counts": {
+      "Conservative": 334,
+      "Balanced": 531,
+      "Aggressive": 2095
+    },
+    "train_selector_counts": {
+      "Conservative": 322,
+      "Balanced": 462,
+      "Aggressive": 2176
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 43,
+      "Balanced": 54,
+      "Aggressive": 273
+    },
+    "seconds": 147.9903295999975,
+    "best_epoch": 13
+  },
+  {
+    "epoch": 14,
+    "train": {
+      "total": 0.2566132246239765,
+      "reconstruction": 0.07398382755550179,
+      "preservation": 0.03588214485427818,
+      "consequence": 0.07735792921000235,
+      "selection": 0.31996276454159966
+    },
+    "validation": {
+      "total": 0.2630098802012366,
+      "reconstruction": 0.07388625700731535,
+      "preservation": 0.035258371382951736,
+      "consequence": 0.07851212387149398,
+      "selection": 0.3327390505428854
+    },
+    "train_target_counts": {
+      "Conservative": 331,
+      "Balanced": 524,
+      "Aggressive": 2105
+    },
+    "train_selector_counts": {
+      "Conservative": 349,
+      "Balanced": 443,
+      "Aggressive": 2168
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 43,
+      "Balanced": 56,
+      "Aggressive": 271
+    },
+    "seconds": 154.82787320000352,
+    "best_epoch": 13
+  },
+  {
+    "epoch": 15,
+    "train": {
+      "total": 0.26403373129464486,
+      "reconstruction": 0.07415315075903325,
+      "preservation": 0.03571545138351015,
+      "consequence": 0.07762204048198623,
+      "selection": 0.3344261643865753
+    },
+    "validation": {
+      "total": 0.25994942486286166,
+      "reconstruction": 0.0737681526590038,
+      "preservation": 0.03531739455018495,
+      "consequence": 0.07829648804020237,
+      "selection": 0.3269169902277959
+    },
+    "train_target_counts": {
+      "Conservative": 333,
+      "Balanced": 528,
+      "Aggressive": 2099
+    },
+    "train_selector_counts": {
+      "Conservative": 338,
+      "Balanced": 464,
+      "Aggressive": 2158
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 43,
+      "Balanced": 57,
+      "Aggressive": 270
+    },
+    "seconds": 131.93047570000635,
+    "best_epoch": 15
+  },
+  {
+    "epoch": 16,
+    "train": {
+      "total": 0.2507298512434637,
+      "reconstruction": 0.07422956093340306,
+      "preservation": 0.035663421386601155,
+      "consequence": 0.07774819437716458,
+      "selection": 0.3076359308966612
+    },
+    "validation": {
+      "total": 0.2527099609375,
+      "reconstruction": 0.07172422485577093,
+      "preservation": 0.03640599280998513,
+      "consequence": 0.07540635619614576,
+      "selection": 0.3172465307235315
+    },
+    "train_target_counts": {
+      "Conservative": 335,
+      "Balanced": 525,
+      "Aggressive": 2100
+    },
+    "train_selector_counts": {
+      "Conservative": 349,
+      "Balanced": 477,
+      "Aggressive": 2134
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 38,
+      "Balanced": 49,
+      "Aggressive": 283
+    },
+    "seconds": 78.25507890002336,
+    "best_epoch": 16
+  },
+  {
+    "epoch": 17,
+    "train": {
+      "total": 0.25085150210841284,
+      "reconstruction": 0.07425935704361748,
+      "preservation": 0.03558423875805897,
+      "consequence": 0.07778849211093541,
+      "selection": 0.3078351959778071
+    },
+    "validation": {
+      "total": 0.26690107680655817,
+      "reconstruction": 0.07449879525481044,
+      "preservation": 0.0348057732791514,
+      "consequence": 0.07958840872790363,
+      "selection": 0.3390468873385642
+    },
+    "train_target_counts": {
+      "Conservative": 332,
+      "Balanced": 523,
+      "Aggressive": 2105
+    },
+    "train_selector_counts": {
+      "Conservative": 340,
+      "Balanced": 477,
+      "Aggressive": 2143
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 47,
+      "Balanced": 61,
+      "Aggressive": 262
+    },
+    "seconds": 78.79259339999408,
+    "best_epoch": 16
+  },
+  {
+    "epoch": 18,
+    "train": {
+      "total": 0.2536793184844223,
+      "reconstruction": 0.07434245017734734,
+      "preservation": 0.035542819180802716,
+      "consequence": 0.07790842599965431,
+      "selection": 0.3132932381688718
+    },
+    "validation": {
+      "total": 0.2610809746626261,
+      "reconstruction": 0.0750943936206199,
+      "preservation": 0.03455375005063173,
+      "consequence": 0.08005457649359832,
+      "selection": 0.32612983198786105
+    },
+    "train_target_counts": {
+      "Conservative": 337,
+      "Balanced": 523,
+      "Aggressive": 2100
+    },
+    "train_selector_counts": {
+      "Conservative": 342,
+      "Balanced": 491,
+      "Aggressive": 2127
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 45,
+      "Balanced": 68,
+      "Aggressive": 257
+    },
+    "seconds": 80.32979699998396,
+    "best_epoch": 16
+  },
+  {
+    "epoch": 19,
+    "train": {
+      "total": 0.24904531558623186,
+      "reconstruction": 0.07410623528868765,
+      "preservation": 0.035540311305305446,
+      "consequence": 0.07753368963462276,
+      "selection": 0.3046485581501337
+    },
+    "validation": {
+      "total": 0.25024591474919705,
+      "reconstruction": 0.07337501673279583,
+      "preservation": 0.035322277227769025,
+      "consequence": 0.07773187788757117,
+      "selection": 0.30852012804935913
+    },
+    "train_target_counts": {
+      "Conservative": 336,
+      "Balanced": 527,
+      "Aggressive": 2097
+    },
+    "train_selector_counts": {
+      "Conservative": 339,
+      "Balanced": 485,
+      "Aggressive": 2136
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 42,
+      "Balanced": 56,
+      "Aggressive": 272
+    },
+    "seconds": 76.45635789999506,
+    "best_epoch": 19
+  },
+  {
+    "epoch": 20,
+    "train": {
+      "total": 0.25179991601286705,
+      "reconstruction": 0.07424192576593644,
+      "preservation": 0.035546381806803716,
+      "consequence": 0.07771561852580793,
+      "selection": 0.30981118005725583
+    },
+    "validation": {
+      "total": 0.27917431222425926,
+      "reconstruction": 0.06963196614304104,
+      "preservation": 0.03743869521327921,
+      "consequence": 0.07254184049528999,
+      "selection": 0.3750924747342848
+    },
+    "train_target_counts": {
+      "Conservative": 330,
+      "Balanced": 527,
+      "Aggressive": 2103
+    },
+    "train_selector_counts": {
+      "Conservative": 346,
+      "Balanced": 479,
+      "Aggressive": 2135
+    },
+    "validation_target_counts": {
+      "Conservative": 48,
+      "Balanced": 58,
+      "Aggressive": 264
+    },
+    "validation_selector_counts": {
+      "Conservative": 35,
+      "Balanced": 45,
+      "Aggressive": 290
+    },
+    "seconds": 76.22081560001243,
+    "best_epoch": 19
+  }
+]

@@ -1,0 +1,419 @@
+{
+  "split": "validation only",
+  "sample_count": 370,
+  "version_comparison": {
+    "V3": {
+      "losses": {
+        "best_epoch": 8,
+        "total": 0.4107645878920684,
+        "reconstruction": 0.07889619223974846,
+        "preservation": 0.047212762768204145,
+        "consequence": 0.060352431439064644,
+        "selection": 0.6207107131545608
+      },
+      "selection": "not applicable: single-output model"
+    },
+    "V4": {
+      "losses": {
+        "best_epoch": 10,
+        "total": 0.09027874665083112,
+        "reconstruction": 0.05506355335583558,
+        "preservation": 0.017531841379162427,
+        "consequence": 0.05231110989241987,
+        "selection": 0.04249320674586941
+      },
+      "target": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      },
+      "selector": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      },
+      "agreement": 1.0,
+      "metrics": {
+        "psnr": 23.372510954363555,
+        "ssim": 0.8132755376197196,
+        "uiqm": 1.7115460476864606,
+        "uciqe": 5.873283769311132
+      },
+      "adaptivity": false
+    },
+    "V5": {
+      "losses": {
+        "best_epoch": 12,
+        "total": 0.0823818731952358,
+        "reconstruction": 0.066730202895564,
+        "preservation": 0.03214313746304125,
+        "consequence": 0.04110453845681371,
+        "selection": 0.002004269973651783,
+        "candidate_distribution": {
+          "v4": {
+            "Conservative": 0.0,
+            "Balanced": 0.0,
+            "Aggressive": 100.0
+          },
+          "v5_target": {
+            "Conservative": 0.0,
+            "Balanced": 100.0,
+            "Aggressive": 0.0
+          },
+          "v5_selector": {
+            "Conservative": 0.0,
+            "Balanced": 100.0,
+            "Aggressive": 0.0
+          }
+        }
+      },
+      "target": {
+        "Conservative": 0,
+        "Balanced": 370,
+        "Aggressive": 0
+      },
+      "selector": {
+        "Conservative": 0,
+        "Balanced": 370,
+        "Aggressive": 0
+      },
+      "agreement": 1.0,
+      "entropy": 0.007931932397273281,
+      "metrics": {
+        "psnr": 21.65962939624159,
+        "ssim": 0.7963453898558746,
+        "uiqm": 1.668473452606055,
+        "uciqe": 5.825829986623815
+      },
+      "adaptivity": false
+    },
+    "V6": {
+      "losses": {
+        "best_epoch": 1,
+        "total": 0.08455327600240707,
+        "reconstruction": 0.05502638776560088,
+        "preservation": 0.018730340233525714,
+        "consequence": 0.0531302889053886,
+        "selection": 0.03030952537381971,
+        "candidate_distribution": {
+          "v4": {
+            "Conservative": 0.0,
+            "Balanced": 0.0,
+            "Aggressive": 100.0
+          },
+          "v6_target": {
+            "Conservative": 0.5405405405405406,
+            "Balanced": 0.2702702702702703,
+            "Aggressive": 99.1891891891892
+          },
+          "v6_selector": {
+            "Conservative": 0.0,
+            "Balanced": 0.0,
+            "Aggressive": 100.0
+          }
+        }
+      },
+      "target": {
+        "Conservative": 2,
+        "Balanced": 1,
+        "Aggressive": 367
+      },
+      "selector": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      },
+      "agreement": 0.9918918918918919,
+      "entropy": 0.018095099252162537,
+      "metrics": {
+        "psnr": 23.39633474303511,
+        "ssim": 0.8139550086614248,
+        "uiqm": 1.7411551319117449,
+        "uciqe": 5.808904300831459
+      },
+      "adaptivity": false
+    }
+  },
+  "severity_definition": "validation input-reference mean absolute RGB error; quartile bins descriptive only",
+  "severity_quartile_edges": [
+    0.047843124717473984,
+    0.09782713651657104,
+    0.11644341424107552,
+    0.13583612069487572,
+    0.302097350358963
+  ],
+  "severity_groups": [
+    {
+      "quartile": "Q1",
+      "n": 93,
+      "severity_mean": 0.0816215033973417,
+      "target_counts": {
+        "Conservative": 2,
+        "Balanced": 0,
+        "Aggressive": 91
+      },
+      "selection_counts": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 93
+      },
+      "mean_probabilities": {
+        "Conservative": 0.0061186078682533085,
+        "Balanced": 0.0012426802115383438,
+        "Aggressive": 0.9926387135700513
+      },
+      "selected_metrics": {
+        "psnr": 24.57187498979817,
+        "ssim": 0.8131936025875871,
+        "uiqm": 2.3417962737190146,
+        "uciqe": 6.477727931032899
+      },
+      "candidate_quality": {
+        "conservative": {
+          "reference_l1": 0.10003316991271512,
+          "preservation_score": 0.9904498304090192,
+          "consequence": 0.1487572742726213,
+          "residual_l2": 12.694162862275236
+        },
+        "balanced": {
+          "reference_l1": 0.10097756805599377,
+          "preservation_score": 0.9926092983573995,
+          "consequence": 0.15309911085072384,
+          "residual_l2": 16.15564247356948
+        },
+        "aggressive": {
+          "reference_l1": 0.04564707083327155,
+          "preservation_score": 0.9598895413901216,
+          "consequence": 0.05405496880011533,
+          "residual_l2": 45.87387929936891
+        }
+      }
+    },
+    {
+      "quartile": "Q2",
+      "n": 92,
+      "severity_mean": 0.1070417336633672,
+      "target_counts": {
+        "Conservative": 0,
+        "Balanced": 1,
+        "Aggressive": 91
+      },
+      "selection_counts": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 92
+      },
+      "mean_probabilities": {
+        "Conservative": 0.003343273941225008,
+        "Balanced": 0.0005987939606237215,
+        "Aggressive": 0.9960579327915026
+      },
+      "selected_metrics": {
+        "psnr": 23.84082739624546,
+        "ssim": 0.8277690313432527,
+        "uiqm": 1.7945626291150316,
+        "uciqe": 6.0964943818424056
+      },
+      "candidate_quality": {
+        "conservative": {
+          "reference_l1": 0.11844387237468491,
+          "preservation_score": 0.9954821480357129,
+          "consequence": 0.155335804204578,
+          "residual_l2": 9.04060495418051
+        },
+        "balanced": {
+          "reference_l1": 0.12431562254610269,
+          "preservation_score": 0.9941962730625401,
+          "consequence": 0.1628045785524275,
+          "residual_l2": 13.29946634043818
+        },
+        "aggressive": {
+          "reference_l1": 0.051789727851586496,
+          "preservation_score": 0.9560793916816297,
+          "consequence": 0.056687484961003065,
+          "residual_l2": 51.371573095736295
+        }
+      }
+    },
+    {
+      "quartile": "Q3",
+      "n": 92,
+      "severity_mean": 0.1263051907653394,
+      "target_counts": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 92
+      },
+      "selection_counts": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 92
+      },
+      "mean_probabilities": {
+        "Conservative": 0.000529201695490369,
+        "Balanced": 0.0002411985535277579,
+        "Aggressive": 0.9992295911778575
+      },
+      "selected_metrics": {
+        "psnr": 23.682158209813373,
+        "ssim": 0.8182973375786906,
+        "uiqm": 1.5501774327739843,
+        "uciqe": 5.642203822084095
+      },
+      "candidate_quality": {
+        "conservative": {
+          "reference_l1": 0.12998648579029934,
+          "preservation_score": 0.9973928105571995,
+          "consequence": 0.14673452621892744,
+          "residual_l2": 5.243908052211222
+        },
+        "balanced": {
+          "reference_l1": 0.13911693251651266,
+          "preservation_score": 0.9960087647904521,
+          "consequence": 0.15519491137693758,
+          "residual_l2": 9.40394866336947
+        },
+        "aggressive": {
+          "reference_l1": 0.052716151426505785,
+          "preservation_score": 0.9531574936016746,
+          "consequence": 0.050638867400424635,
+          "residual_l2": 57.521737264550254
+        }
+      }
+    },
+    {
+      "quartile": "Q4",
+      "n": 93,
+      "severity_mean": 0.16502876836125568,
+      "target_counts": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 93
+      },
+      "selection_counts": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 93
+      },
+      "mean_probabilities": {
+        "Conservative": 0.0032974380538953775,
+        "Balanced": 0.0007000724178313797,
+        "Aggressive": 0.99600249977522
+      },
+      "selected_metrics": {
+        "psnr": 21.498331237788705,
+        "ssim": 0.7967552927232557,
+        "uiqm": 1.2766049425557822,
+        "uciqe": 5.0204909565628215
+      },
+      "candidate_quality": {
+        "conservative": {
+          "reference_l1": 0.16409061064002334,
+          "preservation_score": 0.9976213068090459,
+          "consequence": 0.13799905608738622,
+          "residual_l2": 4.895759603028656
+        },
+        "balanced": {
+          "reference_l1": 0.17769700497068386,
+          "preservation_score": 0.994739652961813,
+          "consequence": 0.1464081286422668,
+          "residual_l2": 8.435564006528546
+        },
+        "aggressive": {
+          "reference_l1": 0.06941773838573886,
+          "preservation_score": 0.9487072440885729,
+          "consequence": 0.05113497534666651,
+          "residual_l2": 65.08199449764786
+        }
+      }
+    }
+  ],
+  "aggressive_probability_vs_severity_pearson_r": 0.07519597834397013,
+  "categorical_selection_varies": false,
+  "condition_interpretation": "Selector chose Aggressive for every validation input, so categorical selection is constant and condition-dependent branch choice is unsupported. Any correlation with Aggressive probability reflects confidence only.",
+  "v6_best_checkpoint_sha256": "6E4FFC2DFED363BB5748D90925F78D4D748A0805A7B46B77F81998432E205E0F",
+  "baseline_sha256": {
+    "checkpoints/v3/paper1_v3_best.pth": "80163DBA423CCDE672318A3DD4F93B68982ADE6A0CD3ED737FA8D326948D0555",
+    "checkpoints/v4/paper1_v4_best.pth": "5C877EDD0094E0C3F35AD977B5EA7651FFA7E22FBF4C38C15006AECE19E7C8D7",
+    "checkpoints/v5/paper1_v5_best_epoch_012.pth": "73F62495B31F226A5BB71459A5F6587FBD68A9BE204BFD26FF1C46B0C0DEFE9B"
+  },
+  "known_baseline_hashes_match": {
+    "v3": true,
+    "v4": true
+  },
+  "test_accessed": false,
+  "candidate_diversity": {
+    "V4": {
+      "pairwise_mean_absolute_candidate_distance": {
+        "conservative_vs_balanced": 0.011103761389322982,
+        "balanced_vs_aggressive": 0.10783049738084947,
+        "conservative_vs_aggressive": 0.1136238351564955
+      },
+      "pairwise_mean_residual_cosine_similarity": {
+        "conservative_vs_balanced": 0.7598270161329089,
+        "balanced_vs_aggressive": 0.3440523687146,
+        "conservative_vs_aggressive": -0.04631934551887114
+      },
+      "mean_residual_l2_norm": {
+        "conservative": 5.525165682547801,
+        "balanced": 9.352000686284658,
+        "aggressive": 53.85591213123219
+      },
+      "mean_preservation_score": {
+        "conservative": 0.9967579421159384,
+        "balanced": 0.9958794369890883,
+        "aggressive": 0.9549831335609024
+      },
+      "validation_candidate_quality": {
+        "conservative": {
+          "psnr": 16.45674641841389,
+          "ssim": 0.7191071776119439
+        },
+        "balanced": {
+          "psnr": 16.781357010623328,
+          "ssim": 0.7311450560350676
+        },
+        "aggressive": {
+          "psnr": 23.372510954363555,
+          "ssim": 0.8132755376197196
+        }
+      }
+    },
+    "V6": {
+      "pairwise_mean_absolute_candidate_distance": {
+        "conservative_vs_balanced": 0.014497663410430824,
+        "balanced_vs_aggressive": 0.1261686990792687,
+        "conservative_vs_aggressive": 0.11754646986924314
+      },
+      "pairwise_mean_residual_cosine_similarity": {
+        "conservative_vs_balanced": 0.38143926716434795,
+        "balanced_vs_aggressive": -0.521767869994447,
+        "conservative_vs_aggressive": 0.07950211449249371
+      },
+      "mean_residual_l2_norm": {
+        "conservative": 7.9730756139433065,
+        "balanced": 11.826206452459902,
+        "aggressive": 54.96508332329827
+      },
+      "mean_preservation_score": {
+        "conservative": 0.9952300323022378,
+        "balanced": 0.9943846377166542,
+        "aggressive": 0.9544575526907637
+      },
+      "validation_candidate_quality": {
+        "conservative": {
+          "psnr": 16.402379017512256,
+          "ssim": 0.7171006878485551
+        },
+        "balanced": {
+          "psnr": 16.005219944947374,
+          "ssim": 0.7115607017600859
+        },
+        "aggressive": {
+          "psnr": 23.39633474303511,
+          "ssim": 0.8139550086614248
+        }
+      }
+    }
+  }
+}

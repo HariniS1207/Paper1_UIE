@@ -1,0 +1,83 @@
+{
+  "model": "Paper 1 \u2014 V4",
+  "checkpoint": "checkpoints\\v4\\paper1_v4_best.pth",
+  "best_epoch": 10,
+  "mode": "inference only",
+  "input_filename": "upload.png",
+  "input_saved": false,
+  "input_original_size": [
+    256,
+    256
+  ],
+  "model_input_size": [
+    256,
+    256
+  ],
+  "preprocessing": "EXIF transpose, RGB conversion, resize to 256x256 with Lanczos, float32 ToTensor-equivalent scaling to [0,1]",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "selected_candidate": "Aggressive",
+  "preservation_scores": {
+    "Conservative": 0.9929095506668091,
+    "Balanced": 0.986301600933075,
+    "Aggressive": 0.9575778841972351
+  },
+  "utilities": {
+    "Conservative": -0.8144495487213135,
+    "Balanced": -1.960843801498413,
+    "Aggressive": 7.561745643615723
+  },
+  "selection_weights": {
+    "Conservative": 0.00023021466040518135,
+    "Balanced": 7.315770199056715e-05,
+    "Aggressive": 0.9996966123580933
+  },
+  "metrics": {
+    "original": {
+      "uiqm": 3.54174898894477,
+      "uciqe": 11.485665321350098,
+      "preservation": 1.0,
+      "psnr": 9.267768017737191,
+      "ssim": 0.008170535787940025,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "conservative": {
+      "uiqm": 3.574066348609726,
+      "uciqe": 11.842252731323242,
+      "preservation": 0.9929095506668091,
+      "psnr": 9.216213177169179,
+      "ssim": 0.0081504937261343,
+      "delta_psnr": -0.05155484056801285,
+      "delta_ssim": -2.0042061805725098e-05
+    },
+    "balanced": {
+      "uiqm": 3.6761819348424876,
+      "uciqe": 12.53933334350586,
+      "preservation": 0.986301600933075,
+      "psnr": 9.092542761082603,
+      "ssim": 0.008097507990896702,
+      "delta_psnr": -0.17522525665458843,
+      "delta_ssim": -7.302779704332352e-05
+    },
+    "aggressive": {
+      "uiqm": 7.7961995639516175,
+      "uciqe": 11.30075740814209,
+      "preservation": 0.9575778841972351,
+      "psnr": 8.811319083535972,
+      "ssim": 0.008100203238427639,
+      "delta_psnr": -0.45644893420121946,
+      "delta_ssim": -7.033254951238632e-05
+    },
+    "selected": {
+      "uiqm": 7.7961995639516175,
+      "uciqe": 11.30075740814209,
+      "preservation": 0.9575778841972351,
+      "psnr": 8.811319083535972,
+      "ssim": 0.008100203238427639,
+      "delta_psnr": -0.45644893420121946,
+      "delta_ssim": -7.033254951238632e-05
+    }
+  },
+  "reference_status": "**Reference metrics:** all five outputs use the same uploaded reference."
+}

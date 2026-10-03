@@ -1,0 +1,37 @@
+{
+  "experiment": "Paper 1 V4 candidate-specific generator controlled experiment",
+  "seed": 42,
+  "pytorch_version": "2.13.0+cu130",
+  "cuda_available": true,
+  "cuda_version": "13.0",
+  "gpu_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "batch_size": 8,
+  "optimizer": "Adam",
+  "learning_rate": 0.0001,
+  "max_epochs": 20,
+  "amp_enabled": true,
+  "amp_initial_scale": 8192.0,
+  "scheduler": null,
+  "early_stopping": false,
+  "loss_weights": {
+    "reconstruction": 1.0,
+    "preservation": 0.2,
+    "consequence": 0.2,
+    "selection": 0.5
+  },
+  "training_split": "data/splits/train.txt",
+  "validation_split": "data/splits/val.txt",
+  "test_split_loaded": false,
+  "preprocessing": "paired ToTensor [0,1]; paired horizontal flip for train only; no other changes",
+  "model": "V3 condition encoder + V4 candidate-specific generator + V3 fixed preservation + V3 selector + V3 consequence check",
+  "candidate_generator": "shared 3->32->64->128 features; separate candidate-specific condition projection and independent 160->64->32->3 convolutional tanh residual head for each candidate; positive learnable ordered gains initialized 0.0625/0.125/0.25",
+  "v2_sha256_before": "BBC8027FF23DCD477CD2E4BD0C95D7A42222AAAAE2E6A6197AF3D198149C53D1",
+  "v3_sha256_before": "80163DBA423CCDE672318A3DD4F93B68982ADE6A0CD3ED737FA8D326948D0555",
+  "output_dir": "C:\\Users\\Harini\\Paper1_UIE\\checkpoints\\v4",
+  "results_dir": "C:\\Users\\Harini\\Paper1_UIE\\results\\v4\\run_20261002T141329Z_e303c177",
+  "amp_stability_correction": {
+    "resume_scale": 2048.0,
+    "growth_tracker_reset": true,
+    "diagnosis": "V4 selection-loss backward overflowed in AMP on a recorded batch while FP32 gradients were finite; AMP resume scale was reduced based on same-batch no-step diagnostics."
+  }
+}

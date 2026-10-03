@@ -1,0 +1,86 @@
+{
+  "model": "Paper 1 \u2014 V3",
+  "checkpoint": "checkpoints\\v3\\paper1_v3_best.pth",
+  "best_epoch": 8,
+  "mode": "inference only",
+  "input_filename": "upload.png",
+  "input_saved": false,
+  "input_original_size": [
+    632,
+    316
+  ],
+  "model_input_size": [
+    256,
+    256
+  ],
+  "preprocessing": "EXIF transpose, RGB conversion, resize to 256x256 with Lanczos, float32 ToTensor-equivalent scaling to [0,1]",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "selected_candidate": "Balanced",
+  "preservation_scores": {
+    "Conservative": 0.9780384302139282,
+    "Balanced": 0.9573225378990173,
+    "Aggressive": 0.9164859652519226
+  },
+  "utilities": {
+    "Conservative": 2.2640974521636963,
+    "Balanced": 3.8102540969848633,
+    "Aggressive": -0.7789634466171265
+  },
+  "selection_weights": {
+    "Conservative": 0.17418307065963745,
+    "Balanced": 0.8175103664398193,
+    "Aggressive": 0.008306562900543213
+  },
+  "metrics": {
+    "original": {
+      "uiqm": 1.7604252377327503,
+      "uciqe": 4.6526899337768555,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "conservative": {
+      "uiqm": 1.8316712679685987,
+      "uciqe": 4.454439163208008,
+      "delta_uiqm": 0.07124603023584841,
+      "delta_uciqe": -0.19825077056884766,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "balanced": {
+      "uiqm": 2.0897528053598804,
+      "uciqe": 4.085033416748047,
+      "delta_uiqm": 0.3293275676271301,
+      "delta_uciqe": -0.5676565170288086,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "aggressive": {
+      "uiqm": 3.134870359531676,
+      "uciqe": 4.937777519226074,
+      "delta_uiqm": 1.3744451217989255,
+      "delta_uciqe": 0.28508758544921875,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    },
+    "selected": {
+      "uiqm": 2.0897528053598804,
+      "uciqe": 4.085033416748047,
+      "delta_uiqm": 0.3293275676271301,
+      "delta_uciqe": -0.5676565170288086,
+      "psnr": null,
+      "ssim": null,
+      "delta_psnr": null,
+      "delta_ssim": null
+    }
+  },
+  "reference_metrics": "**Reference-based metrics:** PSNR unavailable \u00b7 SSIM unavailable \u2014 no ground-truth image supplied.\n\n**No-reference underwater quality metrics:** UIQM and UCIQE available."
+}

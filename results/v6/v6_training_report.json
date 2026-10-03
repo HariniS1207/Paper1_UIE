@@ -1,0 +1,1262 @@
+{
+  "motivation": "Change the V4 selector supervision target to balance reference fidelity, fixed preservation, and consequence consistency.",
+  "objective": "eligible(c) iff (reference_L1(c)-best_reference_L1)/(best_reference_L1+1e-8) <= 0.05; among eligible candidates minimize the equal mean of train-normalized preservation distortion and consequence L1.",
+  "normalization": {
+    "method": "5% relative fidelity eligibility; eligible candidates ranked by mean train-median/IQR normalized preservation distortion and consequence L1",
+    "fit_split": "data/splits/train.txt",
+    "fit_observations": 8880,
+    "component_order": [
+      "preservation_distortion",
+      "consequence_l1"
+    ],
+    "median": [
+      0.00441405177116394,
+      0.11060812324285507
+    ],
+    "iqr": [
+      0.036563098430633545,
+      0.07987094204872847
+    ],
+    "relative_fidelity_tolerance": 0.05,
+    "threshold_analysis": "diagnostics/v6_selection/v6_training_only_threshold_analysis.json",
+    "old_v4_reference_l1_target_counts": {
+      "conservative": 9,
+      "balanced": 20,
+      "aggressive": 2931
+    },
+    "v6_multiobjective_target_counts": {
+      "conservative": 12,
+      "balanced": 21,
+      "aggressive": 2927
+    },
+    "eligible_candidate_frequency": {
+      "conservative": 23,
+      "balanced": 31,
+      "aggressive": 2938
+    },
+    "training_sample_count": 2960,
+    "test_split_loaded": false,
+    "validation_used_for_fit": false,
+    "old_v4_reference_l1_target_percentages": {
+      "conservative": 0.30405405405405406,
+      "balanced": 0.6756756756756757,
+      "aggressive": 99.02027027027027
+    },
+    "v6_multiobjective_target_percentages": {
+      "conservative": 0.40540540540540543,
+      "balanced": 0.7094594594594594,
+      "aggressive": 98.88513513513513
+    }
+  },
+  "training_configuration": {
+    "dataset": "EUVP paired underwater_imagenet",
+    "train_split": "data/splits/train.txt",
+    "validation_split": "data/splits/val.txt",
+    "test_split_loaded": false,
+    "preprocessing": "paired RGB ToTensor [0,1]; paired horizontal flip for train only",
+    "seed": 42,
+    "batch_size": 8,
+    "optimizer": "Adam",
+    "learning_rate": 0.0001,
+    "max_epochs": 20,
+    "validation_frequency_epochs": 1,
+    "best_checkpoint_criterion": "minimum validation total loss",
+    "loss_weights": {
+      "reconstruction": 1.0,
+      "preservation": 0.2,
+      "consequence": 0.2,
+      "selection": 0.5
+    },
+    "gradient_clip_norm": 1.0,
+    "scheduler": null,
+    "early_stopping": false,
+    "initialization": "V4 best",
+    "amp_enabled": true,
+    "amp_initial_scale": 2048,
+    "amp_replay_adjustment": "V6-specific AMP events are recorded. Any non-finite batch is replay-diagnosed before resuming; failed optimizer steps are not counted."
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_total": 0.10139986179970406,
+      "train_reconstruction": 0.05543520572419102,
+      "train_preservation": 0.017624328600091707,
+      "train_consequence": 0.05306947254449935,
+      "train_selection": 0.06365179173849725,
+      "val_total": 0.08455327600240707,
+      "val_reconstruction": 0.05502638776560088,
+      "val_preservation": 0.018730340233525714,
+      "val_consequence": 0.0531302889053886,
+      "val_selection": 0.03030952537381971,
+      "epoch_seconds": 500.37638329999754,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 2,
+      "train_total": 0.0988192524458911,
+      "train_reconstruction": 0.055308802305041135,
+      "train_preservation": 0.017706834630587618,
+      "train_consequence": 0.051224045475592485,
+      "train_selection": 0.05944854721829698,
+      "val_total": 0.09745264367477315,
+      "val_reconstruction": 0.05403470225833558,
+      "val_preservation": 0.017969290338255263,
+      "val_consequence": 0.049823241942637674,
+      "val_selection": 0.059718871438825455,
+      "epoch_seconds": 263.9284934999887,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 3,
+      "train_total": 0.10832084146504467,
+      "train_reconstruction": 0.05503961430812204,
+      "train_preservation": 0.018324917982760314,
+      "train_consequence": 0.050199538710955026,
+      "train_selection": 0.07915267207332559,
+      "val_total": 0.0929448393148345,
+      "val_reconstruction": 0.05551974870063163,
+      "val_preservation": 0.0178211136846929,
+      "val_consequence": 0.05016052851805816,
+      "val_selection": 0.04765752296190004,
+      "epoch_seconds": 295.941938199976,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 4,
+      "train_total": 0.10756462350286342,
+      "train_reconstruction": 0.05537212285641077,
+      "train_preservation": 0.018973342666553483,
+      "train_consequence": 0.04954930480468918,
+      "train_selection": 0.07697594133583276,
+      "val_total": 0.09324376272994118,
+      "val_reconstruction": 0.054106481957274515,
+      "val_preservation": 0.019165821353325972,
+      "val_consequence": 0.04789771550410503,
+      "val_selection": 0.051449146141877046,
+      "epoch_seconds": 293.1986252000206,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 5,
+      "train_total": 0.11164406715212642,
+      "train_reconstruction": 0.055242732137038904,
+      "train_preservation": 0.018747390799123693,
+      "train_consequence": 0.04823705146240222,
+      "train_selection": 0.08600889339640334,
+      "val_total": 0.0993094554221308,
+      "val_reconstruction": 0.0554843167195449,
+      "val_preservation": 0.01732119017758885,
+      "val_consequence": 0.04806485820460964,
+      "val_selection": 0.06149585859195606,
+      "epoch_seconds": 363.6301142000011,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 6,
+      "train_total": 0.10229123119969626,
+      "train_reconstruction": 0.054762473138603,
+      "train_preservation": 0.01892837462695064,
+      "train_consequence": 0.04798334949725383,
+      "train_selection": 0.06829282576973374,
+      "val_total": 0.09327944501026257,
+      "val_reconstruction": 0.05441194053839993,
+      "val_preservation": 0.01770045209575344,
+      "val_consequence": 0.0462352300817902,
+      "val_selection": 0.052160734743685336,
+      "epoch_seconds": 391.88370679999935,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 7,
+      "train_total": 0.10237158619471498,
+      "train_reconstruction": 0.05450470523052924,
+      "train_preservation": 0.018099033208312215,
+      "train_consequence": 0.04778803425866204,
+      "train_selection": 0.06937893472007803,
+      "val_total": 0.1249490685962342,
+      "val_reconstruction": 0.05433728259962958,
+      "val_preservation": 0.017574567549132013,
+      "val_consequence": 0.04670815773912378,
+      "val_selection": 0.11551048304583575,
+      "epoch_seconds": 455.21055859996704,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 8,
+      "train_total": 0.10379628154474335,
+      "train_reconstruction": 0.05452870910836233,
+      "train_preservation": 0.01795065025924831,
+      "train_consequence": 0.046689134916743716,
+      "train_selection": 0.07267923073188678,
+      "val_total": 0.10712299711398177,
+      "val_reconstruction": 0.05411824285984039,
+      "val_preservation": 0.018631918194728928,
+      "val_consequence": 0.046516049149874096,
+      "val_selection": 0.07995031878754899,
+      "epoch_seconds": 172.81402269995306,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 9,
+      "train_total": 0.10986658616645915,
+      "train_reconstruction": 0.05426981106803224,
+      "train_preservation": 0.018465163191226687,
+      "train_consequence": 0.0458593597383918,
+      "train_selection": 0.08546374113978567,
+      "val_total": 0.0959541995984477,
+      "val_reconstruction": 0.05377171726242916,
+      "val_preservation": 0.01764845270160082,
+      "val_consequence": 0.044874386428981214,
+      "val_selection": 0.05935582985749116,
+      "epoch_seconds": 170.78765949996887,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 10,
+      "train_total": 0.11178927572595107,
+      "train_reconstruction": 0.05424179153869281,
+      "train_preservation": 0.01861025254065926,
+      "train_consequence": 0.045256048637266094,
+      "train_selection": 0.08954844700323569,
+      "val_total": 0.11877598704115765,
+      "val_reconstruction": 0.053849471642358884,
+      "val_preservation": 0.018650696688407176,
+      "val_consequence": 0.04545112838213508,
+      "val_selection": 0.10421230019749822,
+      "epoch_seconds": 170.35437160002766,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 11,
+      "train_total": 0.1099191485526594,
+      "train_reconstruction": 0.054289977604875694,
+      "train_preservation": 0.01894450409438562,
+      "train_consequence": 0.044850752130150794,
+      "train_selection": 0.08574023935440424,
+      "val_total": 0.1195981040596962,
+      "val_reconstruction": 0.054575174885827145,
+      "val_preservation": 0.01986791108911102,
+      "val_consequence": 0.046175267708462635,
+      "val_selection": 0.1036285880449656,
+      "epoch_seconds": 170.71772349998355,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 12,
+      "train_total": 0.10556019180127092,
+      "train_reconstruction": 0.053958475146744705,
+      "train_preservation": 0.018924123068919052,
+      "train_consequence": 0.044072932770123356,
+      "train_selection": 0.07800461082039653,
+      "val_total": 0.08790540159554094,
+      "val_reconstruction": 0.053594005631433954,
+      "val_preservation": 0.020046228955726365,
+      "val_consequence": 0.043331529381307396,
+      "val_selection": 0.04327168754629187,
+      "epoch_seconds": 171.05857549997745,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 13,
+      "train_total": 0.10075705281987384,
+      "train_reconstruction": 0.053777216807813256,
+      "train_preservation": 0.018932589732513234,
+      "train_consequence": 0.04365378027228085,
+      "train_selection": 0.06892512384298685,
+      "val_total": 0.12176152572438524,
+      "val_reconstruction": 0.05306871948209969,
+      "val_preservation": 0.018868232317067482,
+      "val_consequence": 0.04402891175972449,
+      "val_selection": 0.11222675394367528,
+      "epoch_seconds": 170.90231510001468,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 14,
+      "train_total": 0.10556106213983651,
+      "train_reconstruction": 0.054100481591917375,
+      "train_preservation": 0.019229073560721167,
+      "train_consequence": 0.042826494186915254,
+      "train_selection": 0.07809893408337155,
+      "val_total": 0.09499286296399864,
+      "val_reconstruction": 0.0533352288442689,
+      "val_preservation": 0.019693841996627885,
+      "val_consequence": 0.04226579760780205,
+      "val_selection": 0.0585314112740594,
+      "epoch_seconds": 171.10719000000972,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 15,
+      "train_total": 0.10267181688466588,
+      "train_reconstruction": 0.05382970555408581,
+      "train_preservation": 0.019277679003976488,
+      "train_consequence": 0.04296651803762526,
+      "train_selection": 0.07278654269269995,
+      "val_total": 0.09220100699647053,
+      "val_reconstruction": 0.05273839120526572,
+      "val_preservation": 0.018615378107170802,
+      "val_consequence": 0.0419323989668408,
+      "val_selection": 0.054706119524466024,
+      "epoch_seconds": 170.8337011000258,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 16,
+      "train_total": 0.10424314066767693,
+      "train_reconstruction": 0.05371092032339122,
+      "train_preservation": 0.019123159510058326,
+      "train_consequence": 0.04252601203483504,
+      "train_selection": 0.07640477197395788,
+      "val_total": 0.10739858670009149,
+      "val_reconstruction": 0.05278630772152462,
+      "val_preservation": 0.02023218791629817,
+      "val_consequence": 0.04233113936073071,
+      "val_selection": 0.08419922848005552,
+      "epoch_seconds": 172.38092159997905,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 17,
+      "train_total": 0.10596243892167066,
+      "train_reconstruction": 0.053453575155219514,
+      "train_preservation": 0.01937065080210969,
+      "train_consequence": 0.04207581335024254,
+      "train_selection": 0.08043914119134078,
+      "val_total": 0.10310361790093216,
+      "val_reconstruction": 0.05313145804244119,
+      "val_preservation": 0.0188583929293059,
+      "val_consequence": 0.041992431717949946,
+      "val_selection": 0.07560398836393614,
+      "epoch_seconds": 172.43410219997168,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 18,
+      "train_total": 0.1077083009823754,
+      "train_reconstruction": 0.05353315102087485,
+      "train_preservation": 0.019087706891366758,
+      "train_consequence": 0.04122987127787358,
+      "train_selection": 0.08422326820122229,
+      "val_total": 0.10085794422272089,
+      "val_reconstruction": 0.05698145342034262,
+      "val_preservation": 0.018313943554420727,
+      "val_consequence": 0.041950370149837955,
+      "val_selection": 0.06364725667077142,
+      "epoch_seconds": 172.3075184999616,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 19,
+      "train_total": 0.10374078396204356,
+      "train_reconstruction": 0.053555019240121585,
+      "train_preservation": 0.01911474482433216,
+      "train_consequence": 0.041153240364951056,
+      "train_selection": 0.0762643347720842,
+      "val_total": 0.13683925633494917,
+      "val_reconstruction": 0.053871903266455676,
+      "val_preservation": 0.019711972199179032,
+      "val_consequence": 0.04296047751967971,
+      "val_selection": 0.14086572254026258,
+      "epoch_seconds": 166.86002630001167,
+      "best_epoch": 1
+    },
+    {
+      "epoch": 20,
+      "train_total": 0.10150367335693257,
+      "train_reconstruction": 0.05311741428198041,
+      "train_preservation": 0.01906996010425123,
+      "train_consequence": 0.04049861548418129,
+      "train_selection": 0.07294508702046162,
+      "val_total": 0.11732001016671594,
+      "val_reconstruction": 0.052302367622787886,
+      "val_preservation": 0.018963731130635417,
+      "val_consequence": 0.040846799656346036,
+      "val_selection": 0.10611107252739571,
+      "epoch_seconds": 166.3540829999838,
+      "best_epoch": 1
+    }
+  ],
+  "best_epoch": 1,
+  "validation_analysis": {
+    "sample_count": 370,
+    "v4_selection_distribution": {
+      "Conservative": 0,
+      "Balanced": 0,
+      "Aggressive": 370
+    },
+    "v6_target_distribution": {
+      "Conservative": 2,
+      "Balanced": 1,
+      "Aggressive": 367
+    },
+    "v6_selection_distribution": {
+      "Conservative": 0,
+      "Balanced": 0,
+      "Aggressive": 370
+    },
+    "v4_selector_to_v6_target_confusion": {
+      "Conservative": {
+        "Conservative": 1,
+        "Balanced": 0,
+        "Aggressive": 0
+      },
+      "Balanced": {
+        "Conservative": 0,
+        "Balanced": 1,
+        "Aggressive": 2
+      },
+      "Aggressive": {
+        "Conservative": 1,
+        "Balanced": 0,
+        "Aggressive": 365
+      }
+    },
+    "v6_target_to_v6_selector_confusion": {
+      "Conservative": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 2
+      },
+      "Balanced": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 1
+      },
+      "Aggressive": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 367
+      }
+    },
+    "v4_selector_to_v6_selector_confusion": {
+      "Conservative": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 0
+      },
+      "Balanced": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 0
+      },
+      "Aggressive": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      }
+    },
+    "v6_target_selector_agreement": 0.9918918918918919,
+    "v4_target_to_v6_target_confusion": {
+      "Conservative": {
+        "Conservative": 1,
+        "Balanced": 0,
+        "Aggressive": 0
+      },
+      "Balanced": {
+        "Conservative": 0,
+        "Balanced": 1,
+        "Aggressive": 2
+      },
+      "Aggressive": {
+        "Conservative": 1,
+        "Balanced": 0,
+        "Aggressive": 365
+      }
+    },
+    "mean_selection_entropy": 0.018095099252162537,
+    "mean_utility_margin": 8.13709497129595,
+    "mean_v6_selection_probabilities": {
+      "Conservative": 0.0033296217009125472,
+      "Balanced": 0.0006971765022522172,
+      "Aggressive": 0.9959732028278144
+    },
+    "selection_distribution_percentages": {
+      "v4": {
+        "Conservative": 0.0,
+        "Balanced": 0.0,
+        "Aggressive": 100.0
+      },
+      "v6_target": {
+        "Conservative": 0.5405405405405406,
+        "Balanced": 0.2702702702702703,
+        "Aggressive": 99.1891891891892
+      },
+      "v6_selector": {
+        "Conservative": 0.0,
+        "Balanced": 0.0,
+        "Aggressive": 100.0
+      }
+    },
+    "mean_v4_metrics": {
+      "psnr": 23.372510954363555,
+      "ssim": 0.8132755376197196,
+      "uiqm": 1.7115460476864606,
+      "uciqe": 5.873283769311132
+    },
+    "mean_v6_metrics": {
+      "psnr": 23.39633474303511,
+      "ssim": 0.8139550086614248,
+      "uiqm": 1.7411551319117449,
+      "uciqe": 5.808904300831459
+    },
+    "adaptivity_by_input_reference_l1_quartile": {
+      "input_reference_l1_q1": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 93
+      },
+      "input_reference_l1_q2": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 92
+      },
+      "input_reference_l1_q3": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 92
+      },
+      "input_reference_l1_q4": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 93
+      }
+    },
+    "median_input_reference_l1_quartile_edges": [
+      0.047843124717473984,
+      0.09782713651657104,
+      0.11644341424107552,
+      0.13583612069487572,
+      0.302097350358963
+    ],
+    "mean_v4_selection_objectives": {
+      "reference_l1": 0.05492515142604306,
+      "preservation_distortion": 0.04501686805003398,
+      "consequence": 0.052315024065004816,
+      "residual_l2": 53.85591207968222
+    },
+    "mean_v6_selection_objectives": {
+      "reference_l1": 0.05490694094852016,
+      "preservation_distortion": 0.04554244730923627,
+      "consequence": 0.053126187088924484,
+      "residual_l2": 54.9650832872133
+    },
+    "v6_candidate_diversity": {
+      "pairwise_mean_absolute_candidate_distance": {
+        "conservative_vs_balanced": 0.014497663410430824,
+        "balanced_vs_aggressive": 0.1261686990792687,
+        "conservative_vs_aggressive": 0.11754646986924314
+      },
+      "pairwise_mean_residual_cosine_similarity": {
+        "conservative_vs_balanced": 0.38143926716434795,
+        "balanced_vs_aggressive": -0.521767869994447,
+        "conservative_vs_aggressive": 0.07950211449249371
+      },
+      "mean_residual_l2_norm": {
+        "conservative": 7.9730756139433065,
+        "balanced": 11.826206452459902,
+        "aggressive": 54.96508332329827
+      },
+      "mean_preservation_score": {
+        "conservative": 0.9952300323022378,
+        "balanced": 0.9943846377166542,
+        "aggressive": 0.9544575526907637
+      },
+      "validation_candidate_quality": {
+        "conservative": {
+          "psnr": 16.402379017512256,
+          "ssim": 0.7171006878485551
+        },
+        "balanced": {
+          "psnr": 16.005219944947374,
+          "ssim": 0.7115607017600859
+        },
+        "aggressive": {
+          "psnr": 23.39633474303511,
+          "ssim": 0.8139550086614248
+        }
+      }
+    },
+    "v4_candidate_diversity": {
+      "pairwise_mean_absolute_candidate_distance": {
+        "conservative_vs_balanced": 0.011103761389322982,
+        "balanced_vs_aggressive": 0.10783049738084947,
+        "conservative_vs_aggressive": 0.1136238351564955
+      },
+      "pairwise_mean_residual_cosine_similarity": {
+        "conservative_vs_balanced": 0.7598270161329089,
+        "balanced_vs_aggressive": 0.3440523687146,
+        "conservative_vs_aggressive": -0.04631934551887114
+      },
+      "mean_residual_l2_norm": {
+        "conservative": 5.525165682547801,
+        "balanced": 9.352000686284658,
+        "aggressive": 53.85591213123219
+      },
+      "mean_preservation_score": {
+        "conservative": 0.9967579421159384,
+        "balanced": 0.9958794369890883,
+        "aggressive": 0.9549831335609024
+      },
+      "validation_candidate_quality": {
+        "conservative": {
+          "psnr": 16.45674641841389,
+          "ssim": 0.7191071776119439
+        },
+        "balanced": {
+          "psnr": 16.781357010623328,
+          "ssim": 0.7311450560350676
+        },
+        "aggressive": {
+          "psnr": 23.372510954363555,
+          "ssim": 0.8132755376197196
+        }
+      }
+    }
+  },
+  "diagnostic_json": "diagnostics\\v6_selection\\validation_per_image.json",
+  "failure_cases": [],
+  "scientific_interpretation": "Validation selection shows a maximum pairwise total-variation shift of 0.000 across input/reference-L1 quartiles. Selected-output PSNR differs from V4 by +0.024 dB and SSIM by +0.0007; selected preservation distortion changes by +0.00053. These are validation associations and do not establish causality.",
+  "decision_rule_inputs": {
+    "quartile_selection_total_variation_max": 0.0,
+    "meaningfully_adaptive_threshold": 0.1,
+    "fidelity_retained": true,
+    "preservation_gain_threshold_distortion": 0.005,
+    "preservation_gain": false
+  },
+  "final_status": "V6 FAILED AS AN ADAPTIVE-SELECTION EXPERIMENT",
+  "amp_overflow_diagnostics": [
+    {
+      "epoch": 19,
+      "batch_index": 351,
+      "filenames": [
+        "n01496331_6262.jpg",
+        "n02606052_15383.jpg",
+        "n02607072_817.jpg",
+        "n02606052_12650.jpg",
+        "n01917289_2205.jpg",
+        "n01496331_4089.jpg",
+        "n01917289_4514.jpg",
+        "n02607072_3315.jpg"
+      ],
+      "initial_scale": 16384.0,
+      "same_batch_amp_scale_finite": {
+        "amp_scale_16384": false,
+        "amp_scale_8192": true,
+        "amp_scale_4096": true,
+        "amp_scale_2048": true,
+        "amp_scale_1024": true,
+        "amp_scale_512": true,
+        "fp32": true
+      },
+      "optimizer_step_executed": false
+    }
+  ],
+  "freeze_recommendation": "Do not freeze as an adaptive selector. Retain this run as a negative result and investigate target/selector objective mismatch before any new run.",
+  "held_out_test_authorized": false,
+  "test_split_used": false,
+  "final_safety": {
+    "v2_sha256": "BBC8027FF23DCD477CD2E4BD0C95D7A42222AAAAE2E6A6197AF3D198149C53D1",
+    "v3_sha256": "80163DBA423CCDE672318A3DD4F93B68982ADE6A0CD3ED737FA8D326948D0555",
+    "v4_sha256": "5C877EDD0094E0C3F35AD977B5EA7651FFA7E22FBF4C38C15006AECE19E7C8D7",
+    "test_manifest_read": false,
+    "v3_v4_source_modified": false,
+    "existing_checkpoints_overwritten": false,
+    "git_commit_or_push": false,
+    "new_source_files": [
+      "src/models/paper1_model_v6.py",
+      "src/losses/paper1_loss_v6.py",
+      "src/train_v6.py",
+      "src/analyze_v6_validation.py"
+    ]
+  },
+  "checkpoint_sha256": "6E4FFC2DFED363BB5748D90925F78D4D748A0805A7B46B77F81998432E205E0F",
+  "repository_commit_before_experiment": "dad17a1c0f9f76b75f6fd685f593537d592550dd",
+  "research_comparison_validation_only": {
+    "V3": {
+      "losses": {
+        "best_epoch": 8,
+        "total": 0.4107645878920684,
+        "reconstruction": 0.07889619223974846,
+        "preservation": 0.047212762768204145,
+        "consequence": 0.060352431439064644,
+        "selection": 0.6207107131545608
+      },
+      "selection": "not applicable: single-output model"
+    },
+    "V4": {
+      "losses": {
+        "best_epoch": 10,
+        "total": 0.09027874665083112,
+        "reconstruction": 0.05506355335583558,
+        "preservation": 0.017531841379162427,
+        "consequence": 0.05231110989241987,
+        "selection": 0.04249320674586941
+      },
+      "target": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      },
+      "selector": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      },
+      "agreement": 1.0,
+      "metrics": {
+        "psnr": 23.372510954363555,
+        "ssim": 0.8132755376197196,
+        "uiqm": 1.7115460476864606,
+        "uciqe": 5.873283769311132
+      },
+      "adaptivity": false
+    },
+    "V5": {
+      "losses": {
+        "best_epoch": 12,
+        "total": 0.0823818731952358,
+        "reconstruction": 0.066730202895564,
+        "preservation": 0.03214313746304125,
+        "consequence": 0.04110453845681371,
+        "selection": 0.002004269973651783,
+        "candidate_distribution": {
+          "v4": {
+            "Conservative": 0.0,
+            "Balanced": 0.0,
+            "Aggressive": 100.0
+          },
+          "v5_target": {
+            "Conservative": 0.0,
+            "Balanced": 100.0,
+            "Aggressive": 0.0
+          },
+          "v5_selector": {
+            "Conservative": 0.0,
+            "Balanced": 100.0,
+            "Aggressive": 0.0
+          }
+        }
+      },
+      "target": {
+        "Conservative": 0,
+        "Balanced": 370,
+        "Aggressive": 0
+      },
+      "selector": {
+        "Conservative": 0,
+        "Balanced": 370,
+        "Aggressive": 0
+      },
+      "agreement": 1.0,
+      "entropy": 0.007931932397273281,
+      "metrics": {
+        "psnr": 21.65962939624159,
+        "ssim": 0.7963453898558746,
+        "uiqm": 1.668473452606055,
+        "uciqe": 5.825829986623815
+      },
+      "adaptivity": false
+    },
+    "V6": {
+      "losses": {
+        "best_epoch": 1,
+        "total": 0.08455327600240707,
+        "reconstruction": 0.05502638776560088,
+        "preservation": 0.018730340233525714,
+        "consequence": 0.0531302889053886,
+        "selection": 0.03030952537381971,
+        "candidate_distribution": {
+          "v4": {
+            "Conservative": 0.0,
+            "Balanced": 0.0,
+            "Aggressive": 100.0
+          },
+          "v6_target": {
+            "Conservative": 0.5405405405405406,
+            "Balanced": 0.2702702702702703,
+            "Aggressive": 99.1891891891892
+          },
+          "v6_selector": {
+            "Conservative": 0.0,
+            "Balanced": 0.0,
+            "Aggressive": 100.0
+          }
+        }
+      },
+      "target": {
+        "Conservative": 2,
+        "Balanced": 1,
+        "Aggressive": 367
+      },
+      "selector": {
+        "Conservative": 0,
+        "Balanced": 0,
+        "Aggressive": 370
+      },
+      "agreement": 0.9918918918918919,
+      "entropy": 0.018095099252162537,
+      "metrics": {
+        "psnr": 23.39633474303511,
+        "ssim": 0.8139550086614248,
+        "uiqm": 1.7411551319117449,
+        "uciqe": 5.808904300831459
+      },
+      "adaptivity": false
+    }
+  },
+  "condition_adaptivity_analysis": {
+    "split": "validation only",
+    "sample_count": 370,
+    "version_comparison": {
+      "V3": {
+        "losses": {
+          "best_epoch": 8,
+          "total": 0.4107645878920684,
+          "reconstruction": 0.07889619223974846,
+          "preservation": 0.047212762768204145,
+          "consequence": 0.060352431439064644,
+          "selection": 0.6207107131545608
+        },
+        "selection": "not applicable: single-output model"
+      },
+      "V4": {
+        "losses": {
+          "best_epoch": 10,
+          "total": 0.09027874665083112,
+          "reconstruction": 0.05506355335583558,
+          "preservation": 0.017531841379162427,
+          "consequence": 0.05231110989241987,
+          "selection": 0.04249320674586941
+        },
+        "target": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 370
+        },
+        "selector": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 370
+        },
+        "agreement": 1.0,
+        "metrics": {
+          "psnr": 23.372510954363555,
+          "ssim": 0.8132755376197196,
+          "uiqm": 1.7115460476864606,
+          "uciqe": 5.873283769311132
+        },
+        "adaptivity": false
+      },
+      "V5": {
+        "losses": {
+          "best_epoch": 12,
+          "total": 0.0823818731952358,
+          "reconstruction": 0.066730202895564,
+          "preservation": 0.03214313746304125,
+          "consequence": 0.04110453845681371,
+          "selection": 0.002004269973651783,
+          "candidate_distribution": {
+            "v4": {
+              "Conservative": 0.0,
+              "Balanced": 0.0,
+              "Aggressive": 100.0
+            },
+            "v5_target": {
+              "Conservative": 0.0,
+              "Balanced": 100.0,
+              "Aggressive": 0.0
+            },
+            "v5_selector": {
+              "Conservative": 0.0,
+              "Balanced": 100.0,
+              "Aggressive": 0.0
+            }
+          }
+        },
+        "target": {
+          "Conservative": 0,
+          "Balanced": 370,
+          "Aggressive": 0
+        },
+        "selector": {
+          "Conservative": 0,
+          "Balanced": 370,
+          "Aggressive": 0
+        },
+        "agreement": 1.0,
+        "entropy": 0.007931932397273281,
+        "metrics": {
+          "psnr": 21.65962939624159,
+          "ssim": 0.7963453898558746,
+          "uiqm": 1.668473452606055,
+          "uciqe": 5.825829986623815
+        },
+        "adaptivity": false
+      },
+      "V6": {
+        "losses": {
+          "best_epoch": 1,
+          "total": 0.08455327600240707,
+          "reconstruction": 0.05502638776560088,
+          "preservation": 0.018730340233525714,
+          "consequence": 0.0531302889053886,
+          "selection": 0.03030952537381971,
+          "candidate_distribution": {
+            "v4": {
+              "Conservative": 0.0,
+              "Balanced": 0.0,
+              "Aggressive": 100.0
+            },
+            "v6_target": {
+              "Conservative": 0.5405405405405406,
+              "Balanced": 0.2702702702702703,
+              "Aggressive": 99.1891891891892
+            },
+            "v6_selector": {
+              "Conservative": 0.0,
+              "Balanced": 0.0,
+              "Aggressive": 100.0
+            }
+          }
+        },
+        "target": {
+          "Conservative": 2,
+          "Balanced": 1,
+          "Aggressive": 367
+        },
+        "selector": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 370
+        },
+        "agreement": 0.9918918918918919,
+        "entropy": 0.018095099252162537,
+        "metrics": {
+          "psnr": 23.39633474303511,
+          "ssim": 0.8139550086614248,
+          "uiqm": 1.7411551319117449,
+          "uciqe": 5.808904300831459
+        },
+        "adaptivity": false
+      }
+    },
+    "severity_definition": "validation input-reference mean absolute RGB error; quartile bins descriptive only",
+    "severity_quartile_edges": [
+      0.047843124717473984,
+      0.09782713651657104,
+      0.11644341424107552,
+      0.13583612069487572,
+      0.302097350358963
+    ],
+    "severity_groups": [
+      {
+        "quartile": "Q1",
+        "n": 93,
+        "severity_mean": 0.0816215033973417,
+        "target_counts": {
+          "Conservative": 2,
+          "Balanced": 0,
+          "Aggressive": 91
+        },
+        "selection_counts": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 93
+        },
+        "mean_probabilities": {
+          "Conservative": 0.0061186078682533085,
+          "Balanced": 0.0012426802115383438,
+          "Aggressive": 0.9926387135700513
+        },
+        "selected_metrics": {
+          "psnr": 24.57187498979817,
+          "ssim": 0.8131936025875871,
+          "uiqm": 2.3417962737190146,
+          "uciqe": 6.477727931032899
+        },
+        "candidate_quality": {
+          "conservative": {
+            "reference_l1": 0.10003316991271512,
+            "preservation_score": 0.9904498304090192,
+            "consequence": 0.1487572742726213,
+            "residual_l2": 12.694162862275236
+          },
+          "balanced": {
+            "reference_l1": 0.10097756805599377,
+            "preservation_score": 0.9926092983573995,
+            "consequence": 0.15309911085072384,
+            "residual_l2": 16.15564247356948
+          },
+          "aggressive": {
+            "reference_l1": 0.04564707083327155,
+            "preservation_score": 0.9598895413901216,
+            "consequence": 0.05405496880011533,
+            "residual_l2": 45.87387929936891
+          }
+        }
+      },
+      {
+        "quartile": "Q2",
+        "n": 92,
+        "severity_mean": 0.1070417336633672,
+        "target_counts": {
+          "Conservative": 0,
+          "Balanced": 1,
+          "Aggressive": 91
+        },
+        "selection_counts": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 92
+        },
+        "mean_probabilities": {
+          "Conservative": 0.003343273941225008,
+          "Balanced": 0.0005987939606237215,
+          "Aggressive": 0.9960579327915026
+        },
+        "selected_metrics": {
+          "psnr": 23.84082739624546,
+          "ssim": 0.8277690313432527,
+          "uiqm": 1.7945626291150316,
+          "uciqe": 6.0964943818424056
+        },
+        "candidate_quality": {
+          "conservative": {
+            "reference_l1": 0.11844387237468491,
+            "preservation_score": 0.9954821480357129,
+            "consequence": 0.155335804204578,
+            "residual_l2": 9.04060495418051
+          },
+          "balanced": {
+            "reference_l1": 0.12431562254610269,
+            "preservation_score": 0.9941962730625401,
+            "consequence": 0.1628045785524275,
+            "residual_l2": 13.29946634043818
+          },
+          "aggressive": {
+            "reference_l1": 0.051789727851586496,
+            "preservation_score": 0.9560793916816297,
+            "consequence": 0.056687484961003065,
+            "residual_l2": 51.371573095736295
+          }
+        }
+      },
+      {
+        "quartile": "Q3",
+        "n": 92,
+        "severity_mean": 0.1263051907653394,
+        "target_counts": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 92
+        },
+        "selection_counts": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 92
+        },
+        "mean_probabilities": {
+          "Conservative": 0.000529201695490369,
+          "Balanced": 0.0002411985535277579,
+          "Aggressive": 0.9992295911778575
+        },
+        "selected_metrics": {
+          "psnr": 23.682158209813373,
+          "ssim": 0.8182973375786906,
+          "uiqm": 1.5501774327739843,
+          "uciqe": 5.642203822084095
+        },
+        "candidate_quality": {
+          "conservative": {
+            "reference_l1": 0.12998648579029934,
+            "preservation_score": 0.9973928105571995,
+            "consequence": 0.14673452621892744,
+            "residual_l2": 5.243908052211222
+          },
+          "balanced": {
+            "reference_l1": 0.13911693251651266,
+            "preservation_score": 0.9960087647904521,
+            "consequence": 0.15519491137693758,
+            "residual_l2": 9.40394866336947
+          },
+          "aggressive": {
+            "reference_l1": 0.052716151426505785,
+            "preservation_score": 0.9531574936016746,
+            "consequence": 0.050638867400424635,
+            "residual_l2": 57.521737264550254
+          }
+        }
+      },
+      {
+        "quartile": "Q4",
+        "n": 93,
+        "severity_mean": 0.16502876836125568,
+        "target_counts": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 93
+        },
+        "selection_counts": {
+          "Conservative": 0,
+          "Balanced": 0,
+          "Aggressive": 93
+        },
+        "mean_probabilities": {
+          "Conservative": 0.0032974380538953775,
+          "Balanced": 0.0007000724178313797,
+          "Aggressive": 0.99600249977522
+        },
+        "selected_metrics": {
+          "psnr": 21.498331237788705,
+          "ssim": 0.7967552927232557,
+          "uiqm": 1.2766049425557822,
+          "uciqe": 5.0204909565628215
+        },
+        "candidate_quality": {
+          "conservative": {
+            "reference_l1": 0.16409061064002334,
+            "preservation_score": 0.9976213068090459,
+            "consequence": 0.13799905608738622,
+            "residual_l2": 4.895759603028656
+          },
+          "balanced": {
+            "reference_l1": 0.17769700497068386,
+            "preservation_score": 0.994739652961813,
+            "consequence": 0.1464081286422668,
+            "residual_l2": 8.435564006528546
+          },
+          "aggressive": {
+            "reference_l1": 0.06941773838573886,
+            "preservation_score": 0.9487072440885729,
+            "consequence": 0.05113497534666651,
+            "residual_l2": 65.08199449764786
+          }
+        }
+      }
+    ],
+    "aggressive_probability_vs_severity_pearson_r": 0.07519597834397013,
+    "categorical_selection_varies": false,
+    "condition_interpretation": "Selector chose Aggressive for every validation input, so categorical selection is constant and condition-dependent branch choice is unsupported. Any correlation with Aggressive probability reflects confidence only.",
+    "v6_best_checkpoint_sha256": "6E4FFC2DFED363BB5748D90925F78D4D748A0805A7B46B77F81998432E205E0F",
+    "baseline_sha256": {
+      "checkpoints/v3/paper1_v3_best.pth": "80163DBA423CCDE672318A3DD4F93B68982ADE6A0CD3ED737FA8D326948D0555",
+      "checkpoints/v4/paper1_v4_best.pth": "5C877EDD0094E0C3F35AD977B5EA7651FFA7E22FBF4C38C15006AECE19E7C8D7",
+      "checkpoints/v5/paper1_v5_best_epoch_012.pth": "73F62495B31F226A5BB71459A5F6587FBD68A9BE204BFD26FF1C46B0C0DEFE9B"
+    },
+    "known_baseline_hashes_match": {
+      "v3": true,
+      "v4": true
+    },
+    "test_accessed": false,
+    "candidate_diversity": {
+      "V4": {
+        "pairwise_mean_absolute_candidate_distance": {
+          "conservative_vs_balanced": 0.011103761389322982,
+          "balanced_vs_aggressive": 0.10783049738084947,
+          "conservative_vs_aggressive": 0.1136238351564955
+        },
+        "pairwise_mean_residual_cosine_similarity": {
+          "conservative_vs_balanced": 0.7598270161329089,
+          "balanced_vs_aggressive": 0.3440523687146,
+          "conservative_vs_aggressive": -0.04631934551887114
+        },
+        "mean_residual_l2_norm": {
+          "conservative": 5.525165682547801,
+          "balanced": 9.352000686284658,
+          "aggressive": 53.85591213123219
+        },
+        "mean_preservation_score": {
+          "conservative": 0.9967579421159384,
+          "balanced": 0.9958794369890883,
+          "aggressive": 0.9549831335609024
+        },
+        "validation_candidate_quality": {
+          "conservative": {
+            "psnr": 16.45674641841389,
+            "ssim": 0.7191071776119439
+          },
+          "balanced": {
+            "psnr": 16.781357010623328,
+            "ssim": 0.7311450560350676
+          },
+          "aggressive": {
+            "psnr": 23.372510954363555,
+            "ssim": 0.8132755376197196
+          }
+        }
+      },
+      "V6": {
+        "pairwise_mean_absolute_candidate_distance": {
+          "conservative_vs_balanced": 0.014497663410430824,
+          "balanced_vs_aggressive": 0.1261686990792687,
+          "conservative_vs_aggressive": 0.11754646986924314
+        },
+        "pairwise_mean_residual_cosine_similarity": {
+          "conservative_vs_balanced": 0.38143926716434795,
+          "balanced_vs_aggressive": -0.521767869994447,
+          "conservative_vs_aggressive": 0.07950211449249371
+        },
+        "mean_residual_l2_norm": {
+          "conservative": 7.9730756139433065,
+          "balanced": 11.826206452459902,
+          "aggressive": 54.96508332329827
+        },
+        "mean_preservation_score": {
+          "conservative": 0.9952300323022378,
+          "balanced": 0.9943846377166542,
+          "aggressive": 0.9544575526907637
+        },
+        "validation_candidate_quality": {
+          "conservative": {
+            "psnr": 16.402379017512256,
+            "ssim": 0.7171006878485551
+          },
+          "balanced": {
+            "psnr": 16.005219944947374,
+            "ssim": 0.7115607017600859
+          },
+          "aggressive": {
+            "psnr": 23.39633474303511,
+            "ssim": 0.8139550086614248
+          }
+        }
+      }
+    }
+  },
+  "repository_state_before_experiment": {
+    "head": "dad17a1c0f9f76b75f6fd685f593537d592550dd",
+    "pre_existing_modified_tracked": [
+      "docs/preservation_method.md",
+      "src/models/information_preservation.py",
+      "src/models/test_information_preservation_monotonic.py"
+    ],
+    "pre_existing_untracked_experiment_artifacts": [
+      "checkpoints/v3",
+      "checkpoints/v4",
+      "checkpoints/v5",
+      "results/v3_final",
+      "results/v4",
+      "results/v5",
+      "diagnostics and prior V3-V5 scripts"
+    ],
+    "note": "Pre-existing dirty changes were preserved; V2-V5 source/checkpoints/results were not modified."
+  },
+  "validation_key_results": {
+    "sample_count": 370,
+    "v6_target_distribution": {
+      "Conservative": 2,
+      "Balanced": 1,
+      "Aggressive": 367
+    },
+    "v6_selector_distribution": {
+      "Conservative": 0,
+      "Balanced": 0,
+      "Aggressive": 370
+    },
+    "target_selector_agreement": 0.9918918918918919,
+    "mean_entropy_nats": 0.018095099252162537,
+    "mean_utility_margin": 8.13709497129595,
+    "quartile_selection_shift": 0.0
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "pairwise_mean_absolute_candidate_distance": {
+    "conservative_vs_balanced": 0.014497663410430824,
+    "balanced_vs_aggressive": 0.1261686990792687,
+    "conservative_vs_aggressive": 0.11754646986924314
+  },
+  "pairwise_mean_residual_cosine_similarity": {
+    "conservative_vs_balanced": 0.38143926716434795,
+    "balanced_vs_aggressive": -0.521767869994447,
+    "conservative_vs_aggressive": 0.07950211449249371
+  },
+  "mean_residual_l2_norm": {
+    "conservative": 7.9730756139433065,
+    "balanced": 11.826206452459902,
+    "aggressive": 54.96508332329827
+  },
+  "mean_preservation_score": {
+    "conservative": 0.9952300323022378,
+    "balanced": 0.9943846377166542,
+    "aggressive": 0.9544575526907637
+  },
+  "validation_candidate_quality": {
+    "conservative": {
+      "psnr": 16.402379017512256,
+      "ssim": 0.7171006878485551
+    },
+    "balanced": {
+      "psnr": 16.005219944947374,
+      "ssim": 0.7115607017600859
+    },
+    "aggressive": {
+      "psnr": 23.39633474303511,
+      "ssim": 0.8139550086614248
+    }
+  }
+}
