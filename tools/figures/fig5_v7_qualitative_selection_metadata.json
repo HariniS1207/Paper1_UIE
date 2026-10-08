@@ -1,0 +1,69 @@
+{
+  "figure": "Figure 5",
+  "checkpoint": "checkpoints\\v7\\paper1_v7_best_epoch_019.pth",
+  "rows": [
+    {
+      "row_label": "Anemone + clownfish",
+      "run_id": "20261006T140929_905275Z_b92e83c8",
+      "source_filename": "fish.jpg",
+      "source_files": {
+        "input": "input.png",
+        "conservative": "conservative.png",
+        "balanced": "balanced.png",
+        "aggressive": "aggressive.png",
+        "selected": "selected.png"
+      },
+      "selected_candidate": "Balanced",
+      "selection_probability": 0.9435619115829468,
+      "checkpoint": "checkpoints\\v7\\paper1_v7_best_epoch_019.pth"
+    },
+    {
+      "row_label": "Reef + fish",
+      "run_id": "20261006T141102_687018Z_186d1f3b",
+      "source_filename": "fish_3.webp",
+      "source_files": {
+        "input": "input.png",
+        "conservative": "conservative.png",
+        "balanced": "balanced.png",
+        "aggressive": "aggressive.png",
+        "selected": "selected.png"
+      },
+      "selected_candidate": "Conservative",
+      "selection_probability": 0.921461820602417,
+      "checkpoint": "checkpoints\\v7\\paper1_v7_best_epoch_019.pth"
+    },
+    {
+      "row_label": "Open-water turtle",
+      "run_id": "20261006T141156_735964Z_6616aeb3",
+      "source_filename": "fish_2.jpg",
+      "source_files": {
+        "input": "input.png",
+        "conservative": "conservative.png",
+        "balanced": "balanced.png",
+        "aggressive": "aggressive.png",
+        "selected": "selected.png"
+      },
+      "selected_candidate": "Aggressive",
+      "selection_probability": 0.9999438524246216,
+      "checkpoint": "checkpoints\\v7\\paper1_v7_best_epoch_019.pth"
+    }
+  ],
+  "columns": [
+    "Input",
+    "Conservative",
+    "Balanced",
+    "Aggressive",
+    "Selected"
+  ],
+  "image_dimensions_px": [
+    256,
+    256
+  ],
+  "verification": {
+    "exactly_three_cases": true,
+    "all_images_same_inference": true,
+    "selected_matches_v7_candidate_pixel_for_pixel": true,
+    "probability_from_saved_v7_selection_weights": true,
+    "input_and_candidate_pixels_unresampled": true
+  }
+}

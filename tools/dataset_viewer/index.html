@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>EUVP Paired Sample Viewer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">PAPER 1 · FIGURE 2</p>
+      <h1>EUVP paired sample viewer</h1>
+      <p class="subtitle">Browse original Underwater ImageNet samples and assemble a three-pair figure.</p>
+      <p id="dataset-status" class="dataset-status" role="status">Checking paired dataset…</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel browser-panel" aria-labelledby="browse-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / BROWSE</p><h2 id="browse-title">Paired samples</h2></div>
+        <button id="candidates" class="button button-secondary">Show representative candidates</button>
+      </div>
+      <div id="candidate-note" class="note" hidden></div>
+      <div class="controls">
+        <button id="previous" class="button button-secondary">← Previous</button>
+        <button id="next" class="button button-secondary">Next →</button>
+        <button id="random" class="button button-secondary">Random pair</button>
+        <label class="control-label" for="page-size">Pairs shown
+          <select id="page-size"><option>12</option><option selected>16</option><option>20</option></select>
+        </label>
+        <label class="control-label search-label" for="search">Search filename
+          <input id="search" type="search" placeholder="e.g. n01496331_1010.jpg" autocomplete="off">
+        </label>
+      </div>
+      <p id="browse-count" class="browse-count"></p>
+      <div id="pair-list" class="pair-list" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" hidden>No matching filenames.</div>
+      <div class="pagination"><button id="previous-bottom" class="button button-secondary">← Previous</button><button id="next-bottom" class="button button-secondary">Next →</button></div>
+    </section>
+
+    <section class="panel preview-panel" aria-labelledby="preview-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">02 / COMPOSE</p><h2 id="preview-title">Selected Figure Preview</h2></div>
+        <div class="selection-actions"><span id="selection-count" class="selection-count">0 / 3 selected</span><button id="clear-selection" class="button button-text">Clear selection</button></div>
+      </div>
+      <p class="preview-caption"><strong>Figure 2 preview</strong><br>Representative paired samples (degraded input and reference) from the EUVP Underwater ImageNet subset used in this study.</p>
+      <div id="selected-preview" class="selected-preview"></div>
+      <p id="selection-hint" class="hint">Select three pairs above to complete the figure preview.</p>
+      <div class="export-actions"><button id="download" class="button button-primary" disabled>Download Figure PNG</button><button id="copy-names" class="button button-secondary" disabled>Copy filenames</button></div>
+      <details class="filename-details"><summary>View selected filenames</summary><pre id="filenames"></pre></details>
+      <p class="export-note">PNG export uses original image pixels, preserves aspect ratio and places images in consistent bordered panels.</p>
+    </section>
+  </main>
+  <footer class="container footer">Local read-only viewer · Original dataset files remain in place.</footer>
+</body>
+</html>
