@@ -9,10 +9,33 @@ The central idea is **generate candidates, then select**. The experiments invest
 - Dataset: paired EUVP Underwater ImageNet subset, expected locally under `data/EUVP/.../underwater_imagenet/`.
 - Dataset split: 2,960 train, 370 validation, and 370 test pairs (80/10/10, seed 42), defined in `data/splits/` and created by `src/data/create_splits.py`.
 - Main frozen evaluation checkpoint: `checkpoints/v7/paper1_v7_best_epoch_019.pth` (epoch 19).
+- Ready-to-run Colab notebook: [`Paper1_UIE_Colab.ipynb`](Paper1_UIE_Colab.ipynb).
+- V7 model card: [`docs/V7_MODEL_CARD.md`](docs/V7_MODEL_CARD.md).
 - Evaluation report: `results/v7/v7_final_test_report.md` and its JSON companion.
 - Demo ports: V3 7860, V4 7861, V7 7862. Dataset viewer 8765.
 - The EUVP dataset is excluded by `.gitignore`; obtain it separately and place it at the expected path.
-- There is no root `requirements.txt` or Colab requirements file in this checkout. Install dependencies explicitly as described below.
+- `requirements.txt` records the package versions observed together in the project's Python 3.12 environment. PyTorch/CUDA wheels can vary by platform; see setup below.
+
+## Test V7 on your own underwater image
+
+The frozen V7 checkpoint can enhance a new RGB image without the EUVP dataset and without a reference image. The checkpoint is tracked in this Git repository. The Colab notebook verifies its SHA-256 before loading it, asks you to upload an image, displays the Conservative, Balanced, and Aggressive candidates plus the selected output, and reports the selected candidate and probabilities.
+
+### Run in Google Colab
+
+1. Open [`Paper1_UIE_Colab.ipynb`](Paper1_UIE_Colab.ipynb) in Google Colab.
+2. Select **Runtime → Change runtime type** and choose a GPU if available. A GPU is recommended; CPU inference is also supported but slower.
+3. Run the cells in order and upload one JPG or PNG when prompted.
+4. Review the three candidates, selected output, and selection probabilities.
+
+The notebook uses the demo's RGB conversion and Lanczos resize to 256 × 256. The EUVP paired dataset is needed only to reproduce the reported quantitative evaluation or train new experiments. The table summarizes what is needed:
+
+| Task | EUVP dataset | Frozen checkpoint | GPU |
+|---|---:|---:|---:|
+| Test a new image / see all candidates / see V7 selection | No | Yes | Recommended, optional |
+| Reproduce the reported 370-image evaluation | Yes | Yes | Recommended |
+| Train or fine-tune an experiment | Yes | Initialization depends on version | Strongly recommended |
+
+For local inference, run `python demo/app_v7.py` and open <http://127.0.0.1:7862>. Details and limitations of the checkpoint are in [`docs/V7_MODEL_CARD.md`](docs/V7_MODEL_CARD.md).
 
 ## Research progression
 
@@ -74,18 +97,22 @@ These values are transcribed from `results/v7/v7_final_test_report.md`. The repo
 | `diagnostics/` | Selector and candidate-space analyses. |
 | `tools/dataset_viewer/` | Local read-only paired dataset browser and its own README. |
 | `tools/figures/` | Generated figure artifacts and metadata. |
-| `docs/` | Research notes, including preservation-method documentation. |
+| `docs/` | Research notes, preservation method, and the V7 model card. |
+| `Paper1_UIE_Colab.ipynb` | Ready-to-run Colab notebook for single-image V7 inference. |
+| `requirements.txt` | Tested dependency version record. |
 | `PROJECT_AUDIT.md` | Additional project audit notes. |
 
 The manuscript named in the supplied project description (`ICSIE26_Sundari_MSEC.docx`) is not present in this checkout. Add or link to the approved manuscript separately if it should be part of the Git handoff.
 
 ## Requirements and setup
 
-Use Python 3.10+ (the original draft's Python 3.12 environment is also suitable). The repository does not currently provide a dependency lockfile or requirements file. The demos and model code import PyTorch, Gradio, NumPy, and Pillow; data/evaluation utilities also use packages such as scikit-image and tqdm. Install compatible versions for your Python and GPU environment. For example, install a PyTorch build appropriate to the machine first, then:
+Use Python 3.12, matching the environment where these package versions were observed. Install dependencies from the repository root:
 
 ```powershell
-python -m pip install gradio numpy pillow scikit-image tqdm torchvision
+python -m pip install -r requirements.txt
 ```
+
+The recorded local build was PyTorch `2.13.0+cu130` and torchvision `0.28.0+cu130`. GPU wheel availability depends on the platform and installed CUDA runtime; if pip cannot resolve these versions for your system, install a compatible PyTorch/torchvision pair using the official PyTorch installation selector, then install the remaining packages from `requirements.txt`. Colab often supplies PyTorch already; check the runtime first. CPU inference is supported.
 
 Create a Windows virtual environment from the repository root:
 
@@ -162,15 +189,15 @@ Open <http://127.0.0.1:8765>. The viewer has no additional Python package depend
 
 ## Google Colab
 
-Colab can run inference without a local GPU laptop. Clone the repository, select **Runtime → Change runtime type → GPU**, and install the same Python dependencies in Colab's Linux environment. Do not copy a Windows `.venv`.
+Colab can run inference without a local GPU laptop. The ready-made [`Paper1_UIE_Colab.ipynb`](Paper1_UIE_Colab.ipynb) automates cloning, dependency installation, GPU check, image upload, frozen-checkpoint verification, and display of all candidate outputs. Open the notebook in Colab, choose **Runtime → Change runtime type → GPU** if available, and run all cells. Do not copy a Windows `.venv`.
 
 ```python
 !git clone https://github.com/HariniS1207/Paper1_UIE.git
 %cd Paper1_UIE
-!pip install gradio numpy pillow scikit-image tqdm torchvision
+!pip install -r requirements.txt
 ```
 
-Install a compatible CUDA-enabled PyTorch version if the runtime does not already have one. Verify it:
+The Colab notebook is the easiest route for one-image inference. If running the following manual workflow instead, check the runtime's PyTorch/CUDA setup first:
 
 ```python
 import torch

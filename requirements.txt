@@ -1,0 +1,10 @@
+# Versions observed together in the project's Python 3.12 environment.
+# For GPU installs, use a PyTorch wheel matching the host's CUDA/runtime first;
+# the model also runs on CPU.
+torch==2.13.0
+torchvision==0.28.0
+gradio==6.29.0
+numpy==2.5.2
+Pillow==12.3.0
+scikit-image==0.26.0
+tqdm==4.70.1
