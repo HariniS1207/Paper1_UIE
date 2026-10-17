@@ -39,7 +39,7 @@ GitHub's documented ordinary-Git maximum is 100 MiB per file. The V3 checkpoint 
 
 ## Notebook and local inference/metric checks
 
-- `notebooks/Paper1_V7_vs_V3_Colab.ipynb`: JSON is valid, all 18 cells are present, and Python code cells parse after removal of IPython magics.
+- `notebooks/Paper1_V7_vs_V3_Colab.ipynb`: JSON is valid, all 17 cells are present, dependencies install before Python imports, and Python code cells parse after removal of IPython magics.
 - Local inference check in the existing PyTorch/CUDA environment: both actual checkpoints were hash-verified and strict-loaded; V7 and V3 ran on the same synthetic 48×32 RGB input with right/bottom replicate padding to model dimensions and output cropping. All three V3 candidates and the actual selected output were present and dimension-correct.
 - Canonical metric check in the existing `.venv`: UIQM/UCIQE and paired-reference PSNR/SSIM were finite using canonical `src/evaluate_test.py` functions (source SHA-256 `728F00EE0D80BD98766D5CB155D1BC1AD96693B7C48A3EEC147F4B6DF75C0705`). The PyTorch environment lacks scikit-image and the `.venv` PyTorch import is blocked by the pre-existing Application Control policy, so those steps were tested in their separate existing environments. No packages or security settings were changed.
 - No Google Colab runtime was available. The notebook was **not executed in Google Colab**; it was syntax-checked and its equivalent local model and metric steps were run. The notebook verifies hashes and epochs, strict-loads, uses `eval()`/`torch.inference_mode()`, and makes no training or test-split calls.
