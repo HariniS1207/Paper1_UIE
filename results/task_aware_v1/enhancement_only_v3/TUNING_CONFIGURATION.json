@@ -1,0 +1,150 @@
+{
+  "experiment": "Paper 1 V7 controlled fine-tuning V3",
+  "status": "completed",
+  "initialization_checkpoint": "checkpoints/v7/paper1_v7_best_epoch_019.pth",
+  "initialization_checkpoint_sha256": "A0E04FEEC9A6C69CCEE0DD8A6E23E9C35227CDAA10C270DD82F853536920B49E",
+  "v1_reference_checkpoint": "checkpoints\\v7_enhancement_only_v1\\paper1_v7_enhancement_only_best_epoch_019.pth",
+  "v1_reference_sha256": "119A2C58DCC3274F0D87E19442A4B7CF41DDE48447C009E8BDA5AAA06186E502",
+  "v1_best_validation_total": 0.24571652541289457,
+  "v2_reference_checkpoint": "checkpoints\\v7_enhancement_only_v2\\paper1_v7_enhancement_only_best_epoch_019.pth",
+  "v2_reference_sha256": "1822A9D11D80BB46C0D4EAD88BF64C1478E4B84A1C77D050046A9556625AA35D",
+  "v2_best_validation_total": 0.25280418589308457,
+  "baseline_validation": {
+    "total": 0.25024591474919705,
+    "reconstruction": 0.07337501673279583,
+    "preservation": 0.035322277227769025,
+    "consequence": 0.07773187788757117,
+    "selection": 0.30852012804935913
+  },
+  "baseline_image_quality": {
+    "psnr": 21.60594304940656,
+    "ssim": 0.7930942567619117,
+    "uiqm": 1.6597420882845315,
+    "uciqe": 5.660413187581139
+  },
+  "loss_definition": "L_V7 = L_reconstruction + 0.2*L_preservation + 0.2*L_consequence + 0.5*L_selection",
+  "loss_weights": {
+    "reconstruction": 1.0,
+    "preservation": 0.2,
+    "consequence": 0.2,
+    "selection": 0.5
+  },
+  "experimental_loss_terms": {
+    "enabled": false,
+    "reason": "Keep the primary objective directly comparable to V7/V1/V2; no coefficient selection or objective change."
+  },
+  "seed": 42,
+  "batch_size": 8,
+  "maximum_epochs": 20,
+  "optimizer": "Adam",
+  "weight_decay": 0.0,
+  "optimizer_state": "fresh V3 optimizer; initialized from original V7 weights only",
+  "trainable_scope": {
+    "candidate_generator": {
+      "learning_rate": 1e-05,
+      "initialization": "pretrained original V7 checkpoint"
+    },
+    "selection_network": {
+      "learning_rate": 5e-06,
+      "initialization": "pretrained original V7 checkpoint"
+    },
+    "trainable_parameter_count": 493965
+  },
+  "frozen_modules": [
+    "condition_encoder",
+    "information_preservation",
+    "consequence_check"
+  ],
+  "gradient_clip_norm": 1.0,
+  "scheduler": {
+    "type": "ReduceLROnPlateau",
+    "monitor": "validation_total under original V7 objective",
+    "mode": "min",
+    "factor": 0.5,
+    "patience": 2,
+    "threshold": 0.0001,
+    "threshold_mode": "abs",
+    "minimum_learning_rates": {
+      "candidate_generator": 1.25e-06,
+      "selection_network": 6.25e-07
+    }
+  },
+  "amp": {
+    "enabled_when_cuda_available": true,
+    "dtype": "float16",
+    "initial_scale": 1024.0,
+    "growth_interval": 100000,
+    "retry_limit": 6,
+    "on_nonfinite": "record failed attempt, halve scale, deterministically replay; stop after retry limit"
+  },
+  "train_split": "data/splits/train.txt",
+  "train_count": 2960,
+  "validation_split": "data/splits/val.txt",
+  "validation_count": 370,
+  "test_split": "data/splits/test.txt",
+  "test_count": 370,
+  "test_policy": "Test manifest identifiers may be checked for overlap only; test images are never loaded and test data is not used for selection.",
+  "preprocessing": {
+    "color": "RGB",
+    "range": "[0,1]",
+    "resize": false,
+    "training": "paired horizontal flip p=0.5",
+    "validation": "no augmentation"
+  },
+  "checkpoint_selection": "minimum validation total under unchanged Paper1LossV7",
+  "output_directory": "results/task_aware_v1/enhancement_only_v3",
+  "checkpoint_directory": "checkpoints/v7_enhancement_only_v3",
+  "downstream_task_evaluation": "NOT EVALUATED",
+  "preflight": {
+    "status": "passed",
+    "runtime": {
+      "python": "3.12.0",
+      "torch": "2.13.0+cu130",
+      "cuda": "13.0",
+      "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU"
+    },
+    "train_count": 2960,
+    "validation_count": 370,
+    "manifest_counts": {
+      "train": 2960,
+      "validation": 370,
+      "test_identifiers_audited": 370
+    },
+    "split_intersections": {
+      "train_validation": 0,
+      "train_test": 0,
+      "validation_test": 0
+    },
+    "smoke_batch_size": 8,
+    "smoke_losses": {
+      "total": 0.10601476579904556,
+      "reconstruction": 0.07119864225387573,
+      "preservation": 0.03122776933014393,
+      "consequence": 0.08180490136146545,
+      "selection": 0.024419168010354042
+    },
+    "finite_nonzero_gradients": true,
+    "candidate_generator_updated": true,
+    "selection_network_updated": true,
+    "frozen_modules_unchanged": true,
+    "original_checkpoint_sha256_unchanged": "A0E04FEEC9A6C69CCEE0DD8A6E23E9C35227CDAA10C270DD82F853536920B49E",
+    "frozen_module_hashes": {
+      "condition_encoder": "DC4DEC5B8432C9B0B92FBA2562FF5D6C7FC2B8EDECB38E1B55C28EF668691AF8",
+      "information_preservation": "5296F97040E2FDC62FD40215420990C858A1D4F043C7E22DF4C415F373B9C173",
+      "consequence_check": "D203DA58E43ADBD9EB641B564BFD36123A6FF91497F85E45F29B841C8BBA9177"
+    }
+  },
+  "actual_epochs_completed": 20,
+  "best_epoch": 9,
+  "best_validation_total": 0.18064150790104994,
+  "final_learning_rates": {
+    "candidate_generator": 1e-05,
+    "selection_network": 5e-06
+  },
+  "successful_optimizer_updates": 7400,
+  "amp_events": [],
+  "best_checkpoint": "checkpoints\\v7_enhancement_only_v3\\paper1_v7_enhancement_only_v3_best_epoch_009.pth",
+  "best_checkpoint_sha256": "29F99549FBE2ED56ED9B56B4F3F4A34A82A6839AD0678D2F2A4DD91BD7A51EFA",
+  "original_checkpoint_sha256_after": "A0E04FEEC9A6C69CCEE0DD8A6E23E9C35227CDAA10C270DD82F853536920B49E",
+  "test_images_loaded": false
+}

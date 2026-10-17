@@ -1,0 +1,12 @@
+{
+  "checkpoint": "checkpoints/v7_enhancement_only_v3/paper1_v7_enhancement_only_v3_best_epoch_009.pth",
+  "expected_sha256": "29F99549FBE2ED56ED9B56B4F3F4A34A82A6839AD0678D2F2A4DD91BD7A51EFA",
+  "expected_epoch": 9,
+  "backend_host": "127.0.0.1",
+  "backend_port": 8768,
+  "ui_host": "127.0.0.1",
+  "ui_port": 7860,
+  "max_image_pixels": 2500000,
+  "max_image_side": 4096,
+  "max_upload_bytes": 25000000
+}

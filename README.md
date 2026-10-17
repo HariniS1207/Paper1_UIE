@@ -1,271 +1,253 @@
-# Information-Preserving Adaptive Candidate Selection for Underwater Image Enhancement
+﻿# Information-Preserving Adaptive Candidate Selection for Underwater Image Enhancement
 
-This repository contains the code, checkpoints, local demos, dataset viewer, analysis artifacts, and reported evaluation for a paired underwater image enhancement study. The research explores generating several controlled enhancement candidates and selecting one based on the input and candidate characteristics.
+This repository contains model implementations and research artifacts for paired underwater image enhancement. The V7 model produces three controlled enhancement candidates and applies an input-conditioned selector. V3 is a controlled fine-tuning experiment that updates the existing candidate generator and selector while holding the condition encoder and two measurement modules fixed.
 
-The central idea is **generate candidates, then select**. The experiments investigate whether candidate selection can balance fidelity, information preservation, and reconstruction-based consequence. Results show candidate variation, but the V7 selector favors Aggressive and does not outperform V4 on every metric. Read the limitations below before describing V7 as adaptive or superior.
+The aim is to investigate whether adapting candidate generation and selection under the existing V7 objective changes the balance between reconstruction, preservation, consequence, and selection quality. The results below are validation-set findings. They do not establish improved downstream detection or classification.
 
-## At a glance
+## Project at a glance
 
-- Dataset: paired EUVP Underwater ImageNet subset, expected locally under `data/EUVP/.../underwater_imagenet/`.
-- Dataset split: 2,960 train, 370 validation, and 370 test pairs (80/10/10, seed 42), defined in `data/splits/` and created by `src/data/create_splits.py`.
-- Main frozen evaluation checkpoint: `checkpoints/v7/paper1_v7_best_epoch_019.pth` (epoch 19).
-- Ready-to-run Colab notebook: [`Paper1_UIE_Colab.ipynb`](Paper1_UIE_Colab.ipynb).
-- V7 model card: [`docs/V7_MODEL_CARD.md`](docs/V7_MODEL_CARD.md).
-- Evaluation report: `results/v7/v7_final_test_report.md` and its JSON companion.
-- Demo ports: V3 7860, V4 7861, V7 7862. Dataset viewer 8765.
-- The EUVP dataset is excluded by `.gitignore`; obtain it separately and place it at the expected path.
-- `requirements.txt` records the package versions observed together in the project's Python 3.12 environment. PyTorch/CUDA wheels can vary by platform; see setup below.
+- Dataset: paired EUVP Underwater ImageNet subset, expected at `data/EUVP/EUVP-Dataset/EUVP/Paired/underwater_imagenet/`.
+- Manifests: `data/splits/train.txt`, `data/splits/val.txt`, and `data/splits/test.txt`; 2,960 / 370 / 370 pairs respectively.
+- Frozen baseline: [original V7 epoch 19](checkpoints/v7/paper1_v7_best_epoch_019.pth).
+- Selected fine-tuned model: [V3 best epoch 9](checkpoints/v7_enhancement_only_v3/paper1_v7_enhancement_only_v3_best_epoch_009.pth), selected from 20 completed epochs by minimum validation objective.
+- Custom-image demo: [AquaEnhance V3](demo/aqua_enhance_v3/README.md).
+- Reproducible Colab handoff: [V7 vs. V3 notebook](notebooks/Paper1_V7_vs_V3_Colab.ipynb).
+- Exact weight comparison: [script](src/compare_v7_v3_weights.py) and [generated report](results/v7_v3_weight_comparison/WEIGHT_COMPARISON_REPORT.md).
+- EUVP images are not distributed here. Obtain the dataset through its approved source and place it at the expected path before training or dataset evaluation.
 
-## Test V7 on your own underwater image
+## Research contribution and scope
 
-The frozen V7 checkpoint can enhance a new RGB image without the EUVP dataset and without a reference image. The checkpoint is tracked in this Git repository. The Colab notebook verifies its SHA-256 before loading it, asks you to upload an image, displays the Conservative, Balanced, and Aggressive candidates plus the selected output, and reports the selected candidate and probabilities.
+The implemented model encodes an input image's condition, creates Conservative, Balanced, and Aggressive outputs, scores each candidate with a shared condition-aware utility network, and selects the highest-scoring candidate. V3 fine-tunes this existing system under the unchanged V7 objective. It adds no new refinement stage, detector, classifier, or task-supervision interface.
 
-### Run in Google Colab
+The contribution examined here is adaptive candidate selection with controlled candidate-generator fine-tuning. Future task-aware training would require approved task models, compatible differentiable interfaces or a justified feedback mechanism, aligned labels, and a separately approved evaluation protocol. Those components are not present in this experiment.
 
-1. Open [`Paper1_UIE_Colab.ipynb`](Paper1_UIE_Colab.ipynb) in Google Colab.
-2. Select **Runtime → Change runtime type** and choose a GPU if available. A GPU is recommended; CPU inference is also supported but slower.
-3. Run the cells in order and upload one JPG or PNG when prompted.
-4. Review the three candidates, selected output, and selection probabilities.
+## Architecture
 
-The notebook uses the demo's RGB conversion and Lanczos resize to 256 × 256. The EUVP paired dataset is needed only to reproduce the reported quantitative evaluation or train new experiments. The table summarizes what is needed:
+`Paper1ModelV7.forward` in `src/models/paper1_model_v7.py` defines the implementation:
 
-| Task | EUVP dataset | Frozen checkpoint | GPU |
-|---|---:|---:|---:|
-| Test a new image / see all candidates / see V7 selection | No | Yes | Recommended, optional |
-| Reproduce the reported 370-image evaluation | Yes | Yes | Recommended |
-| Train or fine-tune an experiment | Yes | Initialization depends on version | Strongly recommended |
-
-For local inference, run `python demo/app_v7.py` and open <http://127.0.0.1:7862>. Details and limitations of the checkpoint are in [`docs/V7_MODEL_CARD.md`](docs/V7_MODEL_CARD.md).
-
-## Research progression
-
-V3 through V7 are successive experimental versions, not unrelated models:
-
-| Version | Implementation / research role |
-|---|---|
-| V3 | Preservation-oriented baseline. Demo: `demo/app.py`; model: `src/models/paper1_model.py`. |
-| V4 | Candidate-specific Conservative, Balanced, and Aggressive generation. Demo: `demo/app_v4.py`; model: `src/models/paper1_model_v4.py`. |
-| V5 | Multi-objective candidate selection; explores fidelity, preservation, and consequence objectives. |
-| V6 | Fidelity-constrained selection experiment. |
-| V7 | Condition-aware utility selection over the V4 candidate space. Demo: `demo/app_v7.py`; model: `src/models/paper1_model_v7.py`. |
-
-Related training scripts are `src/train_v3.py` through `src/train_v7.py`; losses are in `src/losses/`. Earlier versions V2 and the base model also have code and checkpoints. Consult each training report and diagnostic before comparing versions.
-
-## V7 inference and reference images
-
-V7 inference requires only an underwater input image. In `Paper1ModelV7.forward(x)`, the model encodes the input condition, generates the three candidates, calculates preservation scores and consequence errors, computes a utility for each candidate, applies softmax, and selects the maximum-utility candidate (argmax). A reference image is not part of this forward path. The demos accept an optional aligned reference for PSNR/SSIM evaluation; it is not needed to enhance an image.
-
-V7 reuses the V4 candidate space and frozen condition, generator, preservation, and consequence components; its selector is condition-aware. Its scorer combines candidate features, condition features, their elementwise interaction, preservation score, and consequence error. See `src/models/paper1_model_v7.py` for the authoritative implementation.
-
-## Frozen checkpoint and reported results
-
-The final frozen held-out V7 evaluation in this checkout uses:
-
-```text
-checkpoints/v7/paper1_v7_best_epoch_019.pth
-Epoch 19; SHA-256 A0E04FEEC9A6C69CCEE0DD8A6E23E9C35227CDAA10C270DD82F853536920B49E
+```mermaid
+flowchart LR
+    X[RGB input] --> CE[Condition encoder]
+    X --> CG[Candidate generator]
+    CE --> CG
+    CG --> C[Conservative]
+    CG --> B[Balanced]
+    CG --> A[Aggressive]
+    X --> IP[Information-preservation module]
+    X --> CC[Consequence-check module]
+    C --> IP
+    B --> IP
+    A --> IP
+    C --> CC
+    B --> CC
+    A --> CC
+    CE --> S[Condition-aware selection network]
+    C --> S
+    B --> S
+    A --> S
+    IP --> S
+    CC --> S
+    S -->|argmax| Y[Selected candidate image]
 ```
 
-The evaluation contains 370 test pairs. Reported selected-output metrics are:
+The information-preservation and consequence-check modules provide fixed candidate measurements used by the selector and loss. In the V7 forward method their measurements run under `torch.no_grad()`. The selected image is the candidate tensor indexed by the selector's argmax; there is no separate final enhancement stage.
 
-| Metric | V7 selected |
-|---|---:|
-| PSNR | 21.2027 dB |
-| SSIM | 0.789558 |
-| UIQM | 1.6703 |
-| UCIQE | 5.6111 |
-| Preservation score | 0.965145 |
-| Consequence error | 0.081368 |
+V3's actual training scope, confirmed by `src/train_v7_enhancement_only_v3.py`, is:
 
-Test selection counts: Conservative 51 (13.78%), Balanced 62 (16.76%), Aggressive 257 (69.46%). V4 selected Aggressive on all 370 images in the reported comparison and achieved higher PSNR (23.3363) and SSIM (0.817886) than V7. V7's results therefore show selection variation, with a strong Aggressive bias; they do not establish that it is optimal or superior for every input. UIQM/UCIQE are no-reference quality measures and should not be interpreted as paired-reference accuracy.
+- **Trainable:** existing `candidate_generator` and `selection_network` (493,965 parameters).
+- **Frozen:** `condition_encoder`, `information_preservation`, and `consequence_check`.
 
-These values are transcribed from `results/v7/v7_final_test_report.md`. The report states the test split was used only for this final frozen evaluation, not training, tuning, or checkpoint selection. V7 training configuration and validation-only findings are in `results/v7/v7_training_report.md`. Keep reported artifacts and the checkpoint unchanged when reproducing these results. Conduct new experiments in separately named outputs and do not tune against the held-out test set.
+The checkpoint comparison confirms all frozen-module tensors are exactly identical to V7. A changed tensor alone does not prove trainability; the training script and pretraining audit establish that scope.
+
+## Dataset and split boundaries
+
+The paired dataset is read from `data/EUVP/EUVP-Dataset/EUVP/Paired/underwater_imagenet/` as `trainA`/`trainB` pairs. The split manifests contain:
+
+| Split | Pairs | Role in this V3 experiment |
+|---|---:|---|
+| Train | 2,960 | Parameter updates only |
+| Validation | 370 | Per-epoch monitoring and checkpoint selection |
+| Test | 370 | Not used for V3 training, tuning, checkpoint selection, or the reported V7/V3 comparison |
+
+The split identifiers are disjoint. The V3 preflight audited test-manifest identifiers for overlap, but did not load test images; its final evaluation and model comparison used validation pairs only. Do not use the held-out test split to tune or select new models. The existing `results/v7/v7_final_test_report.md` documents a separate historical frozen V7 test evaluation; those test results are not part of the V3 validation comparison.
+
+## Checkpoint inventory
+
+SHA-256 values below were checked against the files in this checkout. V7 remains the frozen original baseline; V3 does not replace it.
+
+| Experiment | Checkpoint | Initialization / baseline | Best epoch | Training scope | SHA-256 | Report | Status |
+|---|---|---|---:|---|---|---|---|
+| Original V7 | `checkpoints/v7/paper1_v7_best_epoch_019.pth` | Original V7 run | 19 | Historical V7 selector training; frozen baseline for V1–V3 | `A0E04FEEC9A6C69CCEE0DD8A6E23E9C35227CDAA10C270DD82F853536920B49E` | [V7 training](results/v7/v7_training_report.md), [final test](results/v7/v7_final_test_report.md) | Frozen baseline; checkpoint is tracked in Git |
+| Enhancement-only V1 | `checkpoints/v7_enhancement_only_v1/paper1_v7_enhancement_only_best_epoch_019.pth` | Original V7 | 19 | Selector only | `119A2C58DCC3274F0D87E19442A4B7CF41DDE48447C009E8BDA5AAA06186E502` | [V1 report](results/task_aware_v1/enhancement_only_v1/EXPERIMENT_REPORT.md), [comparison](results/task_aware_v1/enhancement_only_v1/BASELINE_VS_UPDATED_COMPARISON.md) | Preserved local experiment artifact; not required by V7/V3 notebook |
+| Enhancement-only V2 | `checkpoints/v7_enhancement_only_v2/paper1_v7_enhancement_only_best_epoch_019.pth` | Original V7 | 19 | Selector only | `1822A9D11D80BB46C0D4EAD88BF64C1478E4B84A1C77D050046A9556625AA35D` | [V2 report](results/task_aware_v1/enhancement_only_v2/EXPERIMENT_REPORT.md), [comparison](results/task_aware_v1/enhancement_only_v2/BASELINE_VS_V1_V2.md) | Preserved local experiment artifact; not required by V7/V3 notebook |
+| Controlled fine-tuning V3 | `checkpoints/v7_enhancement_only_v3/paper1_v7_enhancement_only_v3_best_epoch_009.pth` | Original V7 (not V1/V2) | **9** | Candidate generator and selector; remaining named modules frozen | `29F99549FBE2ED56ED9B56B4F3F4A34A82A6839AD0678D2F2A4DD91BD7A51EFA` | [V3 experiment](results/task_aware_v1/enhancement_only_v3/EXPERIMENT_REPORT.md), [integrity](results/task_aware_v1/enhancement_only_v3/CHECKPOINT_INTEGRITY_REPORT.md) | Selected V3 checkpoint; epoch 9 was minimum validation total across 20 completed epochs |
+
+V1/V2 checkpoint weights and their full run artifacts remain preserved in the working project. Their experiment summaries and comparison reports are included for context, but the V7/V3 handoff does not distribute V1/V2 weights or load them in the Colab workflow.
+
+## V3 training methodology
+
+The verified configuration is recorded in `results/task_aware_v1/enhancement_only_v3/TUNING_CONFIGURATION.json`; the run record is in `TRAINING_LOG.csv` and `VALIDATION_COMPONENT_LOSSES.csv`.
+
+- Initialization: original V7 epoch 19 weights; fresh Adam optimizer (no V1/V2 weights or optimizer state).
+- Objective: `L_V7 = L_reconstruction + 0.2 × L_preservation + 0.2 × L_consequence + 0.5 × L_selection`, using unchanged `Paper1LossV7`.
+- Optimizer: Adam, zero weight decay; candidate generator learning rate `1e-5`, selection network learning rate `5e-6`.
+- Schedule: validation-total `ReduceLROnPlateau`, mode `min`, factor `0.5`, patience `2`, absolute threshold `1e-4`; per-group minimum rates `1.25e-6` and `6.25e-7`.
+- Batch size 8; seed 42; 20 epochs; gradient norm clipped at 1.0.
+- AMP: float16 GradScaler enabled when CUDA is available (initial scale 1024, growth interval 100,000, deterministic retry limit 6). This run recorded zero non-finite retries and no AMP interventions.
+- Successful optimizer updates: 7,400. Best checkpoint: epoch 9 with validation total `0.180641507901`; training continued through epoch 20.
+- Preprocessing: paired RGB tensors in `[0,1]`, no resize; paired horizontal flip with probability 0.5 in training and no validation augmentation.
+- Checkpoint selection: lowest validation total under the unchanged V7 objective. No test images were loaded.
+
+Epoch 9 is selected because it had the minimum validation objective, although all 20 configured epochs completed. The preservation component is an evaluation term on the generated outputs; the fixed measurement module itself was frozen.
+
+## V7 versus V3 validation results
+
+All metrics below are means on the same 370 validation pairs. The objective and component losses use unchanged `Paper1LossV7`; PSNR, SSIM, UIQM, and UCIQE use the canonical project metric implementation on RGB `[0,1]` arrays. Lower loss values are favorable; higher image-quality metrics are generally treated as favorable here. These validation means are not measurements for a custom upload.
+
+| Metric | Original V7 | V3 | V3 − V7 |
+|---|---:|---:|---:|
+| Total V7 objective | 0.250245914749 | 0.180641507901 | −0.069604406848 |
+| Reconstruction loss | 0.073375016733 | 0.058406659639 | −0.014968357094 |
+| Preservation loss | 0.035322277228 | 0.052129711332 | **+0.016807434104 (regressed)** |
+| Consequence loss | 0.077731877888 | 0.059971925375 | −0.017759952513 |
+| Selection loss | 0.308520128049 | 0.199629042552 | −0.108891085497 |
+| PSNR | 21.60594305 | 22.82398283 | +1.21803978 |
+| SSIM | 0.79309426 | 0.81109402 | +0.01799977 |
+| UIQM | 1.65974209 | 1.75147532 | +0.09173323 |
+| UCIQE | 5.66041319 | 5.66623224 | +0.00581906 |
+
+V3 improved the combined objective and all four reported validation image-quality means, while the preservation loss **worsened**. It is not a uniform improvement across loss components. UIQM/UCIQE are heuristics; they do not guarantee better human-perceived quality.
+
+### V1/V2 context
+
+The same report gives these validation means; V1/V2 are retained as context and are not used to initialize V3.
+
+| Metric | V7 | V1 | V2 | V3 |
+|---|---:|---:|---:|---:|
+| Total objective | 0.250245914749 | 0.245716525413 | 0.252804185893 | 0.180641507901 |
+| PSNR | 21.60594305 | 21.51331265 | 21.64381029 | 22.82398283 |
+| SSIM | 0.79309426 | 0.79134396 | 0.79363146 | 0.81109402 |
+| UIQM | 1.65974209 | 1.65661616 | 1.65826323 | 1.75147532 |
+| UCIQE | 5.66041319 | 5.65138916 | 5.65893781 | 5.66623224 |
+
+V1/V2 results were not uniform improvements: V1's four image-quality means were below V7; V2 improved PSNR/SSIM slightly but had lower UIQM/UCIQE and a higher total validation objective than V7.
+
+## Custom-image evaluation with AquaEnhance V3
+
+See [the AquaEnhance README](demo/aqua_enhance_v3/README.md) for the exact Windows commands and the two local environments used in this workspace. The app uses the V3 epoch-9 checkpoint and provides an original preview, before/after slider, selected output download, three actual candidate previews, selected candidate/selector probabilities, device and checkpoint details, and a per-upload metrics panel.
+
+UIQM and UCIQE compare the uploaded RGB image with the actual selected V3 output. They are heuristic no-reference indicators; a positive change does not guarantee perceptual improvement. The optional reference upload enables PSNR/SSIM only after the user confirms paired alignment and color-space suitability and the EXIF-oriented RGB dimensions match exactly. The app never resizes a reference to create a score. Without a reference, PSNR/SSIM show `N/A — ground-truth reference required`. Validation-set values in the checkpoint information panel remain clearly labeled validation results and are not reused for the upload.
+
+Some local custom-image examples showed mixed UIQM/UCIQE changes, and color-cast concerns remain a qualitative limitation. Image metrics do not settle perceptual quality; assess outputs visually and with appropriate paired references.
+
+## Limitations and next steps
+
+- V3 preservation loss regressed relative to V7.
+- Custom images can have mixed UIQM/UCIQE changes; potential color casts require qualitative review.
+- Detection loss, classification loss, and classification accuracy are **NOT EVALUATED**. Approved downstream task models, compatible interfaces, and aligned labels were unavailable.
+- Visual changes and image-quality metrics do not establish downstream task improvements.
+- A task-aware experiment needs valid task models, compatible differentiable interfaces or another justified feedback mechanism, aligned labels, and a predeclared evaluation protocol.
+- The reported V7/V3 comparison is validation-only; the held-out test set remains outside V3 training and selection.
+
+## Reproducibility and integrity
+
+The V3 integrity report documents strict state-dictionary loading, repeated validation agreement, training/checkpoint metadata agreement, frozen module digests, and the unchanged V7/V1/V2 hashes. To rerun the V7/V3 weight audit from the project root with PyTorch available:
+
+```powershell
+python src/compare_v7_v3_weights.py
+```
+
+The script verifies both expected checkpoint hashes, loads separate `Paper1ModelV7` instances with `strict=True`, compares every parameter and buffer, and writes CSV/JSON/Markdown into `results/v7_v3_weight_comparison/`. It never writes to checkpoint paths. The current result reports 91 state tensors, 47 changed tensors, and 411,459 changed elements; all frozen modules are exactly identical. See [the weight comparison report](results/v7_v3_weight_comparison/WEIGHT_COMPARISON_REPORT.md).
+
+For inference, use `eval()` and `torch.inference_mode()`, convert EXIF-oriented images to RGB float32 `[0,1]`, preserve dimensions, edge-pad only right/bottom to a multiple of 16, and crop model outputs back to the input size. V7 and V3 use the same preprocessing in the Colab notebook. Checkpoint paths, epochs, and hashes are listed above; do not overwrite original artifacts.
+
+The original V7 checkpoint is already tracked. The selected V3 checkpoint is 12,047,106 bytes (under [GitHub's 100 MiB ordinary-Git per-file limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)) and is included directly; no Git LFS or external artifact host is required for these two files. V1/V2 checkpoint files and their reports remain in the local project but are not needed to run the V7/V3 notebook. EUVP images and uploaded-image data are not included.
+
+## Historical V7 held-out test report
+
+The separate original V7 final evaluation in `results/v7/v7_final_test_report.md` used 370 test pairs after its checkpoint was frozen. Its selected-output means were PSNR 21.2027 dB, SSIM 0.789558, UIQM 1.6703, and UCIQE 5.6111. V4 scored higher on PSNR/SSIM in that report, so V7 was not superior on every comparison. These results are retained as historical V7 evidence and must not be conflated with the V3 validation results above.
 
 ## Repository map
 
 | Path | Purpose |
 |---|---|
-| `src/models/` | V3–V7 model modules and component implementations. |
-| `src/losses/` | Version-specific training losses. |
-| `src/data/` | EUVP paired dataset, transforms, and split creation. |
-| `src/train_v*.py` | Versioned training entry points. Training requires the dataset and writes checkpoints/results. |
-| `src/evaluate_v7_final_test.py` | Frozen V7 test evaluation entry point. |
-| `demo/` | V3, V4, and V7 Gradio demos. |
-| `checkpoints/` | Versioned model checkpoints, including the frozen V7 checkpoint. |
-| `results/v7/` | V7 training and final test reports. |
-| `results/` | Versioned evaluations, inference examples, and analysis artifacts. |
-| `diagnostics/` | Selector and candidate-space analyses. |
-| `tools/dataset_viewer/` | Local read-only paired dataset browser and its own README. |
-| `tools/figures/` | Generated figure artifacts and metadata. |
-| `docs/` | Research notes, preservation method, and the V7 model card. |
-| `Paper1_UIE_Colab.ipynb` | Ready-to-run Colab notebook for single-image V7 inference. |
-| `requirements.txt` | Tested dependency version record. |
-| `PROJECT_AUDIT.md` | Additional project audit notes. |
+| `src/models/` | V3–V7 model and component implementations |
+| `src/losses/` | Versioned losses, including unchanged `Paper1LossV7` |
+| `src/train_v7_enhancement_only_v3.py` | Controlled V3 training entry point |
+| `src/compare_v7_v3_weights.py` | Strict V7/V3 state comparison |
+| `src/evaluate_test.py` | Canonical PSNR/SSIM/UIQM/UCIQE functions |
+| `src/compute_v7_quality_metrics.py` | Canonical metric loader and batch evaluation utility |
+| `data/splits/` | Train/validation/test filename manifests |
+| `checkpoints/v7/` | Original frozen V7 checkpoints |
+| `checkpoints/v7_enhancement_only_v1/` – `v3/` | Fine-tuning experiment checkpoints |
+| `results/task_aware_v1/enhancement_only_v3/` | V3 config, logs, evaluation and integrity reports |
+| `results/v7_v3_weight_comparison/` | Per-tensor CSV/JSON and report |
+| `demo/aqua_enhance_v3/` | Local V3 inference app and verification docs |
+| `notebooks/Paper1_V7_vs_V3_Colab.ipynb` | Colab inference, metrics, and weight comparison handoff |
+| `Paper1_UIE_Colab.ipynb` | Earlier V7-only Colab handoff |
+| `requirements.txt` | Existing pinned dependency record |
 
-The manuscript named in the supplied project description (`ICSIE26_Sundari_MSEC.docx`) is not present in this checkout. Add or link to the approved manuscript separately if it should be part of the Git handoff.
+The EUVP dataset is excluded by `.gitignore`. The manuscript is not included in this checkout.
 
-## Requirements and setup
+## Other project utilities and historical handoffs
 
-Use Python 3.12, matching the environment where these package versions were observed. Install dependencies from the repository root:
+The repository retains earlier experiments and local tools; interpret their results within each version's report rather than combining them with the V3 comparison.
 
-```powershell
-python -m pip install -r requirements.txt
-```
+- `src/models/` and `src/train_v3.py` through `src/train_v7.py` contain the historical V3–V7 implementations and training entry points. The separate controlled V3 fine-tuning script and its configuration are described above.
+- `demo/app_v4.py` and `demo/app_v7.py` are historical local demos. The original V7 demo runs with `python demo/app_v7.py` at `http://127.0.0.1:7862`; it is distinct from the newer two-process AquaEnhance V3 app.
+- The read-only dataset browser in `tools/dataset_viewer/` supports local paired-image browsing and representative-sample suggestions. From the repository root, run `python tools/dataset_viewer/server.py --host 127.0.0.1 --port 8765`; it expects EUVP at the path listed above.
+- `docs/V7_MODEL_CARD.md`, `docs/preservation_method.md`, `PROJECT_AUDIT.md`, and `diagnostics/` retain the V7 model card, preservation method, project audit, and candidate/selector analyses.
+- `Paper1_UIE_Colab.ipynb` is the earlier V7-only notebook; use `notebooks/Paper1_V7_vs_V3_Colab.ipynb` for the paired V7/V3 workflow in this handoff.
 
-The recorded local build was PyTorch `2.13.0+cu130` and torchvision `0.28.0+cu130`. GPU wheel availability depends on the platform and installed CUDA runtime; if pip cannot resolve these versions for your system, install a compatible PyTorch/torchvision pair using the official PyTorch installation selector, then install the remaining packages from `requirements.txt`. Colab often supplies PyTorch already; check the runtime first. CPU inference is supported.
+### Historical version map
 
-Create a Windows virtual environment from the repository root:
+| Version | Research role in the existing codebase |
+|---|---|
+| V3 | Preservation-oriented baseline; earlier model and demo are `src/models/paper1_model.py` and `demo/app.py`. |
+| V4 | Candidate-specific Conservative/Balanced/Aggressive generation (`src/models/paper1_model_v4.py`, `demo/app_v4.py`). |
+| V5 | Multi-objective candidate-selection experiment. |
+| V6 | Fidelity-constrained selection experiment. |
+| V7 | Condition-aware utility selection over the V4 candidate space (`src/models/paper1_model_v7.py`, `demo/app_v7.py`). |
+
+These are historical experiment versions, and their reported results should be interpreted using each version's own protocol and report. This README's controlled fine-tuning V3 refers specifically to the V7-initialized experiment in `src/train_v7_enhancement_only_v3.py`, not the earlier base-model V3.
+
+### Environment and dataset setup
+
+The existing `requirements.txt` records package versions observed together with Python 3.12. For a local virtual environment, from the project root:
 
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
-If PowerShell activation is restricted, invoke `.\.venv\Scripts\python.exe` directly. Check PyTorch and CUDA availability with:
+If CUDA wheels are unavailable for the local platform, install a compatible PyTorch/torchvision pair using the official PyTorch selector, then install the remaining pinned dependencies. CPU inference is supported but slower. Colab should keep a compatible runtime-provided PyTorch build; the new V7/V3 notebook installs the pinned metric packages without replacing Colab's torch build.
 
-```powershell
-python -c "import torch; print(torch.__version__); print('CUDA:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
-```
-
-The demo can run on CPU, though more slowly. Original training used seed 42, batch size 8, Adam at 1e-4, up to 20 epochs, and selected checkpoints using validation loss. See the per-version training script/report for exact settings. Do not assume the current machine matches the historical GPU environment.
-
-## Dataset setup
-
-Download/obtain the paired EUVP Underwater ImageNet data separately. The expected layout is:
+The expected paired EUVP directory layout is:
 
 ```text
 data/EUVP/EUVP-Dataset/EUVP/Paired/underwater_imagenet/
 ├── trainA/   # degraded input images
-└── trainB/   # paired reference images
+└── trainB/   # paired references
 ```
 
-The dataset is intentionally ignored by Git. The paired loader and split/evaluation code verify paired names and use the split manifests under `data/splits/`. Split generation is available as:
+The dataset is intentionally ignored by Git. `src/data/create_splits.py` can create manifests for a new experiment; do not regenerate the frozen `data/splits/` files when reproducing reported results. The original V7 final-test evaluation command is `python src/evaluate_v7_final_test.py`; it reads the held-out test split and writes evaluation outputs, so it is not part of V3 training or checkpoint selection.
+
+### Historical demos and dataset viewer
+
+The older V4 and V7 demos can be run from the repository root:
 
 ```powershell
-python src/data/create_splits.py
+python demo/app_v4.py  # http://127.0.0.1:7861
+python demo/app_v7.py  # http://127.0.0.1:7862
 ```
 
-Only regenerate splits when intentionally starting a new experiment: doing so can change the manifests used by the frozen evaluation. The evaluation report describes its test preprocessing as RGB tensors in [0,1], with no resizing or random augmentation. Interactive demos resize uploaded images to 256 × 256; this is a separate demo preprocessing path.
+The V7 app displays candidates and selector information and includes optional reference metrics and a Figure 5 export workflow. These older demos are separate from [AquaEnhance V3](demo/aqua_enhance_v3/README.md), which uses the selected fine-tuned checkpoint and the two-process runtime described in its own README.
 
-## Run the demos
+The local read-only dataset viewer browses matching `trainA`/`trainB` pairs, filename search, random browsing, pair selection, and heuristic representative-sample suggestions. Suggestions require human review; the viewer does not edit dataset files. From the repository root, run `python tools/dataset_viewer/server.py --host 127.0.0.1 --port 8765` and open `http://127.0.0.1:8765`. It requires the local EUVP directory but has no additional Python dependencies.
 
-Run each command from the repository root. Keep the terminal open and visit the corresponding local URL.
+### Figures and paper artifacts
 
-### V3
+`tools/figures/` and `results/` contain generated figures, inference examples, and reports. Use their metadata to identify source images and checkpoint provenance; demo screenshots are interface illustrations, not substitutes for metric evaluation. The manuscript is not included in this checkout. `docs/V7_MODEL_CARD.md`, `docs/preservation_method.md`, `PROJECT_AUDIT.md`, and `diagnostics/` provide additional model, method, and selector-analysis context.
 
-```powershell
-python demo/app.py
-```
-
-Open <http://127.0.0.1:7860>. Uses `checkpoints/v3/paper1_v3_best.pth`.
-
-### V4
-
-```powershell
-python demo/app_v4.py
-```
-
-Open <http://127.0.0.1:7861>. Uses the V4 checkpoint configured in the demo.
-
-### V7
-
-```powershell
-python demo/app_v7.py
-```
-
-Open <http://127.0.0.1:7862>. Uses `checkpoints/v7/paper1_v7_best_epoch_019.pth`. It displays the candidates, selector information, and selected result; optional reference input enables reference-based metrics. The V7 app also includes a Figure 5 builder/export workflow.
-
-## Dataset viewer
-
-The local, read-only viewer browses matching `trainA`/`trainB` image pairs and helps select three representative samples. It supports filename search, random browsing, pair selection, heuristic representative suggestions, figure PNG export, and filename copying. Suggestions are simple image-statistic heuristics and should be reviewed by a person. The viewer uses the originals directly and does not modify the dataset.
-
-From the repository root:
-
-```powershell
-python tools/dataset_viewer/server.py --host 127.0.0.1 --port 8765
-```
-
-Open <http://127.0.0.1:8765>. The viewer has no additional Python package dependencies. It requires the dataset at the path above.
-
-## Google Colab
-
-Colab can run inference without a local GPU laptop. The ready-made [`Paper1_UIE_Colab.ipynb`](Paper1_UIE_Colab.ipynb) automates cloning, dependency installation, GPU check, image upload, frozen-checkpoint verification, and display of all candidate outputs. Open the notebook in Colab, choose **Runtime → Change runtime type → GPU** if available, and run all cells. Do not copy a Windows `.venv`.
-
-```python
-!git clone https://github.com/HariniS1207/Paper1_UIE.git
-%cd Paper1_UIE
-!pip install -r requirements.txt
-```
-
-The Colab notebook is the easiest route for one-image inference. If running the following manual workflow instead, check the runtime's PyTorch/CUDA setup first:
-
-```python
-import torch
-print(torch.__version__, torch.cuda.is_available())
-if torch.cuda.is_available():
-    print(torch.cuda.get_device_name(0))
-```
-
-The repository checkout includes the checkpoint, so an EUVP download is not needed for single-image V7 inference. Upload an image in Colab, then run:
-
-```python
-import sys
-from pathlib import Path
-import torch
-from PIL import Image
-from torchvision.transforms.functional import pil_to_tensor
-
-root = Path('/content/Paper1_UIE')
-sys.path.insert(0, str(root / 'src'))
-from models.paper1_model_v7 import Paper1ModelV7
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-checkpoint = torch.load(root / 'checkpoints/v7/paper1_v7_best_epoch_019.pth',
-                        map_location='cpu', weights_only=False)
-model = Paper1ModelV7().to(device)
-model.load_state_dict(checkpoint['model_state_dict'], strict=True)
-model.eval()
-
-# Set image_path to a Colab uploaded image. Evaluation preserves input dimensions;
-# the web demo instead resizes images to 256 x 256.
-image_path = '/content/underwater.jpg'
-image = Image.open(image_path).convert('RGB')
-x = (pil_to_tensor(image).float() / 255.0).unsqueeze(0).to(device)
-with torch.inference_mode():
-    output = model(x)
-selected = output['selected_image'][0].clamp(0, 1).cpu()
-result = Image.fromarray((selected.permute(1, 2, 0).numpy() * 255).round().astype('uint8'))
-display(result)
-print('Selected:', model.candidate_names[int(output['selected_index'][0])])
-```
-
-For an interactive Colab demo, note that the checked-in apps bind to `127.0.0.1` and local ports; those addresses are not automatically exposed in Colab. Direct model inference in the notebook is the documented workflow here. Colab runtime GPU type and installed package versions can vary.
-
-## Reproducing evaluations
-
-The V7 final test evaluation command is:
-
-```powershell
-python src/evaluate_v7_final_test.py
-```
-
-It requires the paired dataset and split manifests. Review the script before running: it evaluates the held-out set and writes evaluation artifacts. The recorded evaluation used 370 pairs and `checkpoints/v7/paper1_v7_best_epoch_019.pth`. Do not use the test set to select checkpoints, tune settings, or choose qualitative examples.
-
-Training entry points include `src/train_v3.py`, `src/train_v4.py`, `src/train_v5.py`, `src/train_v6.py`, and `src/train_v7.py`. Training is not needed to use the demos or run single-image inference. Training requires the dataset and writes checkpoints/results; preserve the frozen artifacts by making any new run clearly separate.
-
-## Figures and paper relationship
-
-`tools/figures/` contains generated figure files and metadata; `results/` contains outputs and reports. The dataset viewer is a sample-selection utility, not a paper figure. Demo screenshots are interface views, not substitutes for model result figures. Use the metadata/report files to identify the checkpoint and source images associated with generated examples. The manuscript itself is not included in the current checkout.
-
-## What is frozen
-
-For the reported V7 test result, treat the epoch 19 checkpoint, test split/manifests, preprocessing, evaluation report, and associated figure metadata as frozen evidence. Do not overwrite them or silently change the reported metrics. New training, checkpoint selection, or test protocols should be labeled as new experiments and saved separately. The code remains available for inspection and new research; the frozen designation refers to the artifacts underlying the current report.
-
-## Quick commands
-
-```powershell
-python demo/app.py                         # V3: http://127.0.0.1:7860
-python demo/app_v4.py                      # V4: http://127.0.0.1:7861
-python demo/app_v7.py                      # V7: http://127.0.0.1:7862
-python tools/dataset_viewer/server.py      # Viewer: http://127.0.0.1:8765
-```
+The V7 held-out test report remains frozen evidence. Do not use its test examples to tune V3 or future models.
